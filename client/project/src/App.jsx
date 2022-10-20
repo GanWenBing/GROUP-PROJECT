@@ -9,7 +9,6 @@ function App() {
   return (
     <>
   <BrowserRouter>
-  <h1>Full Stack</h1>
     <Routes>
       <Route path='/' element={<LoginForm/>}/>
       <Route path='/CreateAccount' element={<CreateAccount/>}/>
