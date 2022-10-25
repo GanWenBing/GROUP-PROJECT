@@ -13,8 +13,6 @@ function App() {
       <Route path='/' element={<LoginForm/>}/>
       <Route path='/CreateAccount' element={<CreateAccount/>}/>
       <Route path='/Homepage' element={<Homepage/>}/>
-      {/* <Route path="/holidays" element={<p>All Holidays</p>} />
-      <Route path="/holidays/new" element={<CreateHolidayForm />} /> */}
     </Routes>
   </BrowserRouter>
     </>

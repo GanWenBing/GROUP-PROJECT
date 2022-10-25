@@ -25,7 +25,7 @@ const CreateAccount = () => {
                 console.log(response)
                 if (response.ok) {
                     alert('Account created')
-                    navigate('/LoginForm')
+                    navigate('/')
                 } else {
                     setError("Invalid, please try again")
                 }
@@ -63,7 +63,7 @@ const CreateAccount = () => {
                         <div className='flex flex-col py-2'>
                             <label className='text-red-600'>{error}</label>
                         </div>
-                        <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' onClick={()=> navigate("/")}>Create</button>
+                        <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white'>Create</button>
                         <button className='border w-full my-5 py-2 border-transparent hover:bg-indigo-500 text-black' onClick={()=> navigate("/")}>Cancel</button>
 
                     </form>
