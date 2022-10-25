@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard"
 import Team from "./components/Team"
 import Calendar from "./components/Calendar";
 import Settings from "./components/Settings";
+import TrackIt from "./components/TrackIt"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/Team' element={<Team />} />
           <Route path='/Calendar' element={<Calendar />} />
           <Route path='/Settings' element={<Settings />} />
+          <Route path='/TrackIt' element={<TrackIt />} />
         </Routes>
       </BrowserRouter>
     </>

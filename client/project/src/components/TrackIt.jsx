@@ -1,13 +1,14 @@
 import NavBar from "./Navbar";
 
-const Team = () => {
+const TrackIt = () => {
     return (
         <>
             <NavBar />
-            <h2> Insert Team info here </h2>
             
         </>
     )
 }
 
-export default Team
+
+
+export default TrackIt

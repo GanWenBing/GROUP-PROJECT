@@ -5,6 +5,7 @@ const Settings = () => {
         <>
             <NavBar />
             <h2> Insert Settings info here </h2>
+            <p> Stretch goal - maybe can put change profile picture here </p>
         </>
     )
 }
