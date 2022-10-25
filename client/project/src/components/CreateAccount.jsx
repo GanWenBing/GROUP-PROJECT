@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 const CreateAccount = () => {
+
+
     const navigate = useNavigate();
 
     const [error, setError] = useState("");
@@ -10,10 +12,11 @@ const CreateAccount = () => {
     const handleSubmit = (event) =>{
         event.preventDefault();
 
+
         const data = Object.fromEntries(new FormData(event.target));
         console.log(data);
 
-        fetch("http://localhost:3000/api/CreateAccount",{
+        fetch("api/CreateAccount",{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -22,16 +25,17 @@ const CreateAccount = () => {
             body: JSON.stringify(data)
         })
         .then((response) => {
-            console.log(response)
+            console.log(response)   
             if (response.ok) {
-                alert('Account created')
-                navigate('/LoginForm')
+                //alert('Account created')
+                navigate('/')
             } else {
                 setError("Invalid, please try again")
             }
             return response.json()
         })
         .then((data) => {
+            //localStorage.setItem("userInfo",JSON.stringify(data)) 
             console.log(data)
         });
 

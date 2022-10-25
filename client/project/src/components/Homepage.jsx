@@ -1,6 +1,27 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
+
+  // const data = JSON.parse(localStorage.getItem("userInfo"))
+  // console.log(data.id)
+
+  //console.log(props)
+  const navigate = useNavigate()
+  const handleClick = () =>{
+    navigate('/Homepage/Income')
+  }
+
+  const handleClickLogout = () =>{
+    window.localStorage.clear();
+    navigate('/')
+  }
+
+
+  const handleClickIncomelist = () =>{
+    navigate('/Homepage/Incomelist')
+  }
+
   return (
     <div>
       <div>
@@ -27,22 +48,25 @@ const Homepage = () => {
                   <a
                     href="#"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={handleClick}
                   >
-                    Team
+                    Income
                   </a>
 
                   <a
                     href="#"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={handleClickLogout}
                   >
-                    Projects
+                    Logout
                   </a>
 
                   <a
                     href="#"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    onClick={handleClickIncomelist}
                   >
-                    Calendar
+                    Incomelist
                   </a>
 
                   <a

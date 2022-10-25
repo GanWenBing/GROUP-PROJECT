@@ -2,10 +2,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import expense_picture from '../assets/expense_picture.png'
 import { useState } from 'react'
-
+import { useLocation } from 'react-router-dom'
 
 const LoginForm = () => {
+    //console.log(props)
     const [error, setError] = useState("");
+    const [userid, setUserid] = useState("wertyui");
+   // const {state} = useLocation()
+   
 
     const navigate = useNavigate();
 
@@ -26,18 +30,18 @@ const LoginForm = () => {
             .then((response) => {
                 console.log(response)
                 if (response.ok) {
+                   console.log("ok")
                     navigate("/Homepage")
+                    //<Navigate to="/Homepage" replace state={userid} />
                 } else {
                     setError("Invalid, please try again")
                 }
                 return response.json()
             })
             .then((data) => {
+                localStorage.setItem("userInfo", JSON.stringify(data))
                 console.log(data)
-                // if(data.msg === 'Login route'){
-                //     navigate('/Homepage')
-                // }
-
+                //setUserid(data.usernameid)
             });
     }
 
@@ -53,7 +57,7 @@ const LoginForm = () => {
                         <h2 className='text-3xl font-bold text-center py-6'>Sign in</h2>
                         <div className='flex flex-col py-2'>
                             <label>Username:</label>
-                            <input className='border p-2' name="Username" type="username"/>
+                            <input className='border p-2' name="Username" type="username" />
                         </div>
                         <div className='flex flex-col py-2'>
                             <label>Password:</label>
@@ -68,6 +72,9 @@ const LoginForm = () => {
                             <button className='text-blue-600' onClick={()=> navigate("/CreateAccount")}>Create an account</button>
                         </div>
                     </form>
+                    {/* <div>
+                        {userid}
+                    </div> */}
                 </div>
             </div>
         </>
