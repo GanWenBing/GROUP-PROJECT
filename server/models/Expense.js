@@ -1,6 +1,4 @@
 const mongoose = require("mongoose")
-const {User} = require("./User")
-console.log(User)
 
 const expenseSchema = mongoose.Schema({
     title: {
@@ -10,6 +8,9 @@ const expenseSchema = mongoose.Schema({
     category: {
         type: String,
         required: true
+
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Category"
     },
     description: {
         type: String,

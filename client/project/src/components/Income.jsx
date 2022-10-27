@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import NavBar from "./Navbar"
 
 const Income = () => {
     
@@ -39,6 +40,8 @@ const Income = () => {
 
     }
     return (
+        <>
+        <NavBar/>
         <form method="post" onSubmit={handleSubmit}>
             <fieldset>
                 <legend>Income</legend>
@@ -81,6 +84,8 @@ const Income = () => {
                 <button>Create Expense</button>
             </fieldset>
         </form>
+        </>
+        
     )
 }
 
