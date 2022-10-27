@@ -1,6 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import NavBar from "./Navbar"
+=======
+>>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
 
 const Income = () => {
     
@@ -40,8 +43,11 @@ const Income = () => {
 
     }
     return (
+<<<<<<< HEAD
         <>
         <NavBar/>
+=======
+>>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
         <form method="post" onSubmit={handleSubmit}>
             <fieldset>
                 <legend>Income</legend>
@@ -84,8 +90,11 @@ const Income = () => {
                 <button>Create Expense</button>
             </fieldset>
         </form>
+<<<<<<< HEAD
         </>
         
+=======
+>>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
     )
 }
 

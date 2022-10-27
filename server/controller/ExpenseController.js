@@ -29,7 +29,11 @@ router.get("/seed", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
+<<<<<<< HEAD
         const expense = await Expense.find().exec().populate("catergory");
+=======
+        const expense = await Expense.find().exec();
+>>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
         res.status(200).json(expense);
     } catch (error) {
         res.status(500).json(error);
@@ -86,6 +90,7 @@ router.delete("/listexpense/:id", async (req,res) => {
     }
 })
 
+<<<<<<< HEAD
 router.put("/update/:id", (req,res) => {
     const {id} = req.params;
     Expense.findByIdAndUpdate(id, req.body, (err, updated) =>{
@@ -97,5 +102,7 @@ router.put("/update/:id", (req,res) => {
         }
     })
 })
+=======
+>>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
 
 module.exports = router;
