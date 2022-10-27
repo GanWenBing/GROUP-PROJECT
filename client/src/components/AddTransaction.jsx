@@ -8,18 +8,49 @@ const AddTransaction = () => {
     const [date, setDate] = useState("")
     const [amount, setAmount] = useState(0)
     const { addTransaction } = useContext(GlobalContext)
+    // const [error, setError] = useState("");
 
     const onSubmit = e => {
         e.preventDefault();
 
-        const newTransaction = {
-            id: Math.floor(Math.random() * 10000),
+
+        const newTransaction1 = {
+            // id: Math.floor(Math.random() * 10000),
             title,
             category,
             description,
             date,
             amount: +amount
         }
+
+        console.log(newTransaction1)
+
+        const data1 = JSON.parse(localStorage.getItem("userInfo"))
+        console.log(data1)
+        newTransaction1["user"] = data1.id;
+        const newTransaction = newTransaction1;
+        console.log(newTransaction)
+        
+
+        fetch("http://localhost:3000/expense/create", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },// send it to express as JSON file
+            body: JSON.stringify(newTransaction)
+        })
+            .then((response) => {
+                if (response.ok) {
+                    alert('expense created')
+                } else {
+                    console.log("Oops Something")
+                }
+                return response.json()
+            })
+            .then((data) => {
+                console.log(data)
+            });
 
         addTransaction(newTransaction)
     }
@@ -29,7 +60,7 @@ const AddTransaction = () => {
             <h3>Add new transaction</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-control">
-                    <label htmlFor="title">Text</label>
+                    <label htmlFor="title">Title</label>
                     <input
                         type="title"
                         placeholder="Enter text..."

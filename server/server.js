@@ -8,7 +8,7 @@ const ExpenseController = require("./controller/ExpenseController")
 const UserController = require("./controller/UserController")
 const CategoryController = require("./controller/CategoryController")
 //const bcrypt = require('bcrypt');
-//hello
+
 
 const PORT = process.env.PORT ?? 3000;
 //const saltRounds = 10;
