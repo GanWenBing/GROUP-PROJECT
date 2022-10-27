@@ -6,10 +6,7 @@ const mongoose = require("mongoose");
 //const User = require("./models/User");
 const ExpenseController = require("./controller/ExpenseController")
 const UserController = require("./controller/UserController")
-<<<<<<< HEAD
 const CategoryController = require("./controller/CategoryController")
-=======
->>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
 //const bcrypt = require('bcrypt');
 
 const PORT = process.env.PORT ?? 3000;
@@ -21,10 +18,7 @@ app.use(cors())
 app.use(express.json())
 app.use("/expense", ExpenseController)
 app.use("/api", UserController)
-<<<<<<< HEAD
 app.use("/categories", CategoryController)
-=======
->>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
 
 app.get("/", (req, res) => {
     res.send("Hello World!");

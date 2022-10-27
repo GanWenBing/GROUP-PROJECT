@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-<<<<<<< HEAD
 import NavBar from "./Navbar";
 
 const IncomeList = () => {
@@ -116,23 +115,6 @@ const IncomeList = () => {
         </table>
       </div>
     </>
-=======
-
-const IncomeList = () => {
-    const [income, setIncome] = useState([])
-
-    useEffect(() => {
-        const userinfo = JSON.parse(localStorage.getItem("userInfo"))
-        const id = userinfo.id
-        fetch(`http://localhost:3000/expense/listexpense/${id}`)
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-      }, []);
-  return (
-    <div>
-      
-    </div>
->>>>>>> bce4fda5830c0397e999fc8a1a55a722f6ef5cb7
   )
 }
 
