@@ -15,15 +15,36 @@ export default function GlobalProvider({ children }) {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions 
-    function deleteTransaction(id) {
-        dispatch({
-            type: 'DELETE_TRANSACTION',
-            payload: id
-        });
+    async function getTransactions() {
+        try {
+         const res= await fetch("http://localhost:3000/expense/listexpense/:id")
+         console.log(res)
+    
+          dispatch({
+            type: 'GET_TRANSACTIONS',
+            payload: res.data.data
+          });
+        } catch (err) {
+            res.status(500).json({msg: "error"})
+        }
+      }
+
+    
+
+    async function deleteTransaction(id) {
+        try {
+            await fetch(`http://localhost:3000/expense/listexpense/${id}`);
+
+            dispatch({
+                type: 'DELETE_TRANSACTION',
+                payload: _id
+            });
+        } catch (err) {
+            res.status(500).json({msg: "error"})
+        }
     }
 
     function addTransaction(transaction) {
-
         dispatch({
             type: 'ADD_TRANSACTION',
             payload: transaction
@@ -33,8 +54,10 @@ export default function GlobalProvider({ children }) {
     return (
         <GlobalContext.Provider value={{
             transactions: state.transactions,
+            getTransactions,
             deleteTransaction, 
             addTransaction
+            
         }}>
             {children}
         </GlobalContext.Provider >);
