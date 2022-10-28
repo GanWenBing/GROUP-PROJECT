@@ -24,6 +24,5 @@ const TrackIt = () => {
     )
 }
 
-
-
 export default TrackIt
+

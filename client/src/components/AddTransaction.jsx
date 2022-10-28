@@ -44,7 +44,7 @@ const AddTransaction = () => {
                 if (response.ok) {
                     alert('expense created')
                 } else {
-                    console.log("Oops Something")
+                    console.log("Oops something's wrong")
                 }
                 return response.json()
             })

@@ -29,7 +29,7 @@ router.get("/seed", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const expense = await Expense.find().exec().populate("catergory");
+        const expense = await Expense.find().exec().populate("category");
         res.status(200).json(expense);
     } catch (error) {
         res.status(500).json(error);

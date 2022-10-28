@@ -7,9 +7,9 @@ const Team = () => {
 
             <h1 class="flex flex-row justify-center font-medium leading-tight text-7xl mt-0 mb-2 text-gray-600 py-10">Meet the team!</h1>
 
-            <div className="flex flex-row justify-center py-10">
+            <div className="flex flex-row justify-center gap-10 py-10">
 
-                <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
+                <div className="flex flex-col justify-center shadow-md rounded-xl gap-4 py-10 sm:px-12 dark:bg-gray-900 dark:text-gray-100">
                     <img src="https://i.pinimg.com/originals/26/32/ed/2632ed38f455851dd9adf61c89417d90.png" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                     <div className="space-y-4 text-center divide-y divide-gray-700">
                         <div className="my-2 space-y-1">
@@ -42,7 +42,7 @@ const Team = () => {
                 </div>
 
 
-                <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
+                <div className="flex flex-col justify-center gap-4 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
                     <img src="https://uploads-ssl.webflow.com/60d21ea94cc770cd69e270e0/623f2d54749a3beed9d3cd10_me.png" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
                     <div className="space-y-4 text-center divide-y divide-gray-700">
                         <div className="my-2 space-y-1">

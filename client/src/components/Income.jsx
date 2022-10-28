@@ -30,7 +30,7 @@ const Income = () => {
                 if (response.ok) {
                     navigate("/Homepage")
                 } else {
-                    console.log("Oops Something")
+                    console.log("Oops something's wrong")
                 }
                 return response.json()
             })
