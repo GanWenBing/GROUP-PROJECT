@@ -1,6 +1,5 @@
 import LoginForm from "./components/LoginForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import CreateHolidayForm from "./components/CreateHolidayForm";
 import Homepage from "./components/Homepage";
 import CreateAccount from "./components/CreateAccount";
 import Income from "./components/Income";
@@ -8,7 +7,7 @@ import IncomeList from "./components/IncomeList";
 //import Dashboard from "./components/Dashboard";
 import Team from "./components/Team"
 import TrackIt from "./components/TrackIt";
-//import LoginForm from "./components/LoginForm";
+import Settings from "./components/Settings"
 
 function App() {
 
@@ -25,8 +24,8 @@ function App() {
       <Route path='/Homepage/Incomelist' element={<IncomeList/>}/>
       <Route path='/Team' element={<Team/>} />
       <Route path='/TrackIt' element={<TrackIt/>} />
-      {/* <Route path="/holidays" element={<p>All Holidays</p>} />
-      <Route path="/holidays/new" element={<CreateHolidayForm />} /> */}
+      <Route path='/Settings' element={<Settings/>} />
+
     </Routes>
   </BrowserRouter>
     </>

@@ -18,8 +18,6 @@ const TrackIt = () => {
                     <AddTransaction />
                 </div>
             </div>
-
-
         </GlobalProvider>
     )
 }

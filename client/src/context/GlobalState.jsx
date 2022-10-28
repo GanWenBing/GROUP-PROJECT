@@ -1,6 +1,5 @@
 import { createContext, useReducer } from "react"
 import AppReducer from './AppReducer'
-import { useEffect } from "react";
 
 // Initial state 
 const initialState = {
@@ -45,6 +44,7 @@ export default function GlobalProvider({ children }) {
     }
 
     function addTransaction(transaction) {
+       
         dispatch({
             type: 'ADD_TRANSACTION',
             payload: transaction

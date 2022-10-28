@@ -6,7 +6,7 @@ const AddTransaction = () => {
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState("")
     const { addTransaction } = useContext(GlobalContext)
     // const [error, setError] = useState("");
 
@@ -43,6 +43,10 @@ const AddTransaction = () => {
             .then((response) => {
                 if (response.ok) {
                     alert('expense created')
+                    // setTitle="";
+                    // setCategory="";
+                    // setAmount="";
+                    // setDescription="";
                 } else {
                     console.log("Oops something's wrong")
                 }
@@ -53,6 +57,9 @@ const AddTransaction = () => {
             });
 
         addTransaction(newTransaction)
+
+        
+
     }
 
     return (
