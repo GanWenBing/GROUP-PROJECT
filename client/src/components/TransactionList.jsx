@@ -17,19 +17,18 @@ const TransactionList = ({transaction}) => {
         setList(data));
   }, []);
 
-  const handleClick = async () => {
+  const handleDelete = async (id) => {
     console.log("Delete")
-    await fetch("http://localhost:3000/expense/listexpense/:id", {
+    await fetch(`http://localhost:3000/expense/listexpense/:${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': "application/json"
       },
-      body: JSON.stringify(transaction)
+      // body: JSON.stringify(transaction)
     })
-    const json = await response.json()
+    // const json = await response.json()
       .then((response) => {
         if (response.ok) {
-          deleteTransaction()
           alert('expense deleted')
         } else {
           console.log("Oops something's wrong")
@@ -40,6 +39,10 @@ const TransactionList = ({transaction}) => {
         console.log(data)
       });
 
+  }
+
+  const handleUpdate = (id) => {
+    const newTitle = prompt("Enter new Title");
   }
 
   return (
@@ -81,8 +84,8 @@ const TransactionList = ({transaction}) => {
                   <td class="py-4 px-6">{item.description}</td>
                   <td class="py-4 px-6">{item.date}</td>
                   <td class="py-4 px-6">{item.amount}</td>
-                  <td class="py-4 px-6 text-gray-1500 hover:text-black"><button>edit</button></td>
-                  <td class="py-4 px-6 text-gray-1000 hover:text-black"><button onClick={() => deleteTransaction(transaction._id)}> remove </button> </td>
+                  <td class="py-4 px-6 text-gray-1500 hover:text-black"><button onClick={() => handleUpdate.val.id}>edit </button></td>
+                  <td class="py-4 px-6 text-gray-1000 hover:text-black"><button onClick={() => handleDelete(transaction._id)}> remove </button> </td>
 
               </tr>
           )

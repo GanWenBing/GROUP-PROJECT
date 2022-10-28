@@ -13,7 +13,6 @@ const AddTransaction = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-
         const newTransaction1 = {
             // id: Math.floor(Math.random() * 10000),
             title,
@@ -57,8 +56,6 @@ const AddTransaction = () => {
             });
 
         addTransaction(newTransaction)
-
-        
 
     }
 
