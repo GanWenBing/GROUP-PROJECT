@@ -1,34 +1,37 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { GlobalContext } from "../context/GlobalState"
-import { useContext } from "react";
 
-const TransactionList = ({transaction}) => {
+const TransactionList = () => {
   const [list, setList] = useState([])
-  const { deleteTransaction } = useContext(GlobalContext);
+  const [shouldFetch, setShouldFetch] = useState(true)
 
   useEffect(() => {
-    const userinfo = JSON.parse(localStorage.getItem("userInfo"))
-    const id = userinfo.id
-    fetch(`http://localhost:3000/expense/listexpense/${id}`)
-      .then((response) => response.json())
-      .then((data) =>
-        setList(data));
-  }, []);
+    if (shouldFetch) {
+      const userinfo = JSON.parse(localStorage.getItem("userInfo"))
+      const id = userinfo.id
+      fetch(`http://localhost:3000/expense/listexpense/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setList(data);
+          setShouldFetch(false);
+        });
+    }
+  }, [shouldFetch]);
 
   const handleDelete = async (id) => {
     console.log("Delete")
-    await fetch(`http://localhost:3000/expense/listexpense/:${id}`, {
+    await fetch(`http://localhost:3000/expense/listexpense/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': "application/json"
       },
       // body: JSON.stringify(transaction)
     })
-    // const json = await response.json()
+      // const json = await response.json()
       .then((response) => {
         if (response.ok) {
+          setShouldFetch(true)
           alert('expense deleted')
         } else {
           console.log("Oops something's wrong")
@@ -84,19 +87,19 @@ const TransactionList = ({transaction}) => {
                   <td class="py-4 px-6">{item.description}</td>
                   <td class="py-4 px-6">{item.date}</td>
                   <td class="py-4 px-6">{item.amount}</td>
-                  <td class="py-4 px-6 text-gray-1500 hover:text-black"><button onClick={() => handleUpdate.val.id}>edit </button></td>
-                  <td class="py-4 px-6 text-gray-1000 hover:text-black"><button onClick={() => handleDelete(transaction._id)}> remove </button> </td>
+                  <td class="py-4 px-6 text-gray-1500 hover:text-black"><button onClick={() => handleUpdate(item._id)}>edit </button></td>
+                  <td class="py-4 px-6 text-gray-1000 hover:text-black"><button onClick={() => handleDelete(item._id)}> remove </button> </td>
 
-              </tr>
-          )
-          })}
+                </tr>
+              )
+            })}
 
-        </tbody>
+          </tbody>
 
-      </table>
-    </div>
-  </>
-)
+        </table>
+      </div>
+    </>
+  )
 }
 
 export default TransactionList

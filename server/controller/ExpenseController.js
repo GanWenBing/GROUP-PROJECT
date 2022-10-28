@@ -82,7 +82,7 @@ router.delete("/listexpense/:id", async (req, res) => {
         }
         res.status(200).json({ msg: "delete" })
     } catch (error) {
-        res.status(500).json({ msg: "error" })
+        res.status(500).json({ msg: error.message })
     }
 })
 
