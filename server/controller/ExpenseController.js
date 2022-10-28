@@ -86,7 +86,7 @@ router.delete("/listexpense/:id", async (req, res) => {
     }
 })
 
-router.put("/update/:id", async (req, res) => {
+router.post("/update/:id", async (req, res) => {
     const { id } = req.params;
     const { title, category, description, date, amount } = req.body;
      
