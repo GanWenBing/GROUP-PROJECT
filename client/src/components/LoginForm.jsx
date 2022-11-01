@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const LoginForm = () => {
-    //console.log(props)
+    
     const [error, setError] = useState("");
-    const [userid, setUserid] = useState("wertyui");
+    // const [userid, setUserid] = useState("erf");
+    
    // const {state} = useLocation()
    
-
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -40,8 +40,9 @@ const LoginForm = () => {
             })
             .then((data) => {
                 localStorage.setItem("userInfo", JSON.stringify(data))
-                console.log(data)
-                //setUserid(data.usernameid)
+                // const data1 = JSON.parse(localStorage.getItem("userInfo"))
+                // console.log(data1.id)
+                // setUserid(data1.id)
             });
     }
 
@@ -51,7 +52,6 @@ const LoginForm = () => {
                 <div className='hidden sm:block'>
                     <img className='w-full h-full object-cover' src={expense_picture} alt="" />
                 </div>
-
                 <div className='bg-gray-100 flex flex-col justify-center'>
                     <form className='max-w-[400px] w-full mx-auto bg-white p-4' method='post' onSubmit={handleSubmit}>
                         <h2 className='text-3xl font-bold text-center py-6'>Sign in</h2>

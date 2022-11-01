@@ -72,7 +72,7 @@ router.post("/create", async (req, res) => {
 
 });
 
-router.delete("/listexpense/:id", async (req,res) => {
+router.delete("/listexpense/remove/:id", async (req,res) => {
     const {id} = req.params;
     console.log(id)
     try{
@@ -85,6 +85,16 @@ router.delete("/listexpense/:id", async (req,res) => {
         res.status(500).json({msg: "error"})
     }
 })
+
+router.get("/listexpense/expense/:id", async (req, res) => {
+    const {id} = req.params
+    try {
+        const expense = await Expense.findById(id)
+        res.status(200).json(expense);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+});
 
 router.put("/update/:id", (req,res) => {
     const {id} = req.params;

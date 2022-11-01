@@ -153,6 +153,11 @@ input[type='number'] {
   opacity: 1;
 }
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 320px) {
   .container {
     width: 300px;

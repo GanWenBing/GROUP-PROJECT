@@ -8,11 +8,13 @@ import IncomeList from "./components/IncomeList";
 //import Dashboard from "./components/Dashboard";
 import Team from "./components/Team"
 import TrackIt from "./components/TrackIt";
+import Edit from './components/Edit';
+import Settings from './components/Settings'
+import { useState } from "react";
 //import LoginForm from "./components/LoginForm";
 
 function App() {
 
-  //const [userid, setUserid] = useState("hello")
   return (
     <>
   <BrowserRouter>
@@ -25,6 +27,8 @@ function App() {
       <Route path='/Homepage/Incomelist' element={<IncomeList/>}/>
       <Route path='/Team' element={<Team/>} />
       <Route path='/TrackIt' element={<TrackIt/>} />
+      <Route path='/Edit' element={<Edit/>} />
+      <Route path='/Settings' element={<Settings/>} />
       {/* <Route path="/holidays" element={<p>All Holidays</p>} />
       <Route path="/holidays/new" element={<CreateHolidayForm />} /> */}
     </Routes>

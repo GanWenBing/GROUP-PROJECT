@@ -8,13 +8,13 @@ router.get("/seed", async (req, res) => {
 
     const category = await Category.insertMany([
         {
+            category: "Income"
+        },
+        {
             category: "Travel",
         },
         {
-            category: "Salary"
-        },
-        {
-            category: "Car expense"
+            category: "Bills"
         },
         {
             category: "Education"
@@ -23,10 +23,7 @@ router.get("/seed", async (req, res) => {
             category: "Entertainment"
         },
         {
-            category: "Rent"
-        },
-        {
-            category: "Utilities"
+            category: "Food"
         },
         {
             category: "Other"
