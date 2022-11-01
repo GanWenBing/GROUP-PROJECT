@@ -29,7 +29,7 @@ const AddTransaction = () => {
         newTransaction1["user"] = data1.id;
         const newTransaction = newTransaction1;
         console.log(newTransaction)
-        
+
 
         fetch("http://localhost:3000/expense/create", {
             method: "POST",
@@ -61,15 +61,18 @@ const AddTransaction = () => {
 
     return (
         <>
-            <h3>Add new transaction</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-control">
                     <label htmlFor="title">Title</label>
-                    <input
+                    <select name="title" className="border border-gray-400 py-1 px-2 w-full" value = {title} onChange={(e) => setTitle(e.target.value)}>
+                        <option value="Expense">Expense</option>
+                        <option value="Income">Income</option>
+                    </select>
+                    {/* <input
                         type="title"
                         placeholder="Enter text..."
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)} />
+                        onChange={(e) => setTitle(e.target.value)} /> */}
                 </div>
                 <div className="form-control">
                     <label htmlFor="category">Category</label>
