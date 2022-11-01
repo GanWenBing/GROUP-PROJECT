@@ -2,9 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-const TransactionList = () => {
-  const [list, setList] = useState([])
-  const [shouldFetch, setShouldFetch] = useState(true)
+const TransactionList = ({
+  shouldFetch,
+  setShouldFetch
+}) => {
+  const [transactions, setTransactions] = useState([])
   const [editItem, setEditItem] = useState(null)
   const [newTitle, setNewTitle] = useState(null)
   const [categories, setCategories] = useState([])
@@ -30,7 +32,7 @@ const TransactionList = () => {
       fetch(`http://localhost:3000/expense/listexpense/${id}`)
         .then((response) => response.json())
         .then((data) => {
-          setList(data);
+          setTransactions(data);
           setShouldFetch(false);
         });
     }
@@ -116,7 +118,7 @@ const TransactionList = () => {
             </tr>
           </thead>
           <tbody>
-            {list.map((item) => {
+            {transactions.map((item) => {
               return (
                 <tr class="bg-white border-b dark:bg-white-800 dark:border-gray-100" key={item._id}>
                   <td class="py-4 px-6">{item.title}</td>
@@ -208,7 +210,7 @@ export default TransactionList
 //     return (
 //         <>
 //             <h3>History</h3>
-//             <ul className="list">
+//             <ul className="transactions">
 //                 {transactions.map(transaction => (<Transaction key={transaction.id} transaction = { transaction } />))}
 //             </ul>
 

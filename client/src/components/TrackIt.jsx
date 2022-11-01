@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import NavBar from "./Navbar";
 import Balance from "./Balance"
 import "../App.css"
@@ -7,6 +8,8 @@ import AddTransaction from "./AddTransaction";
 import GlobalProvider from "../context/GlobalState"
 
 const TrackIt = () => {
+    const [shouldFetch, setShouldFetch] = useState(true)
+
     return (
         <GlobalProvider>
             <NavBar />
@@ -14,8 +17,8 @@ const TrackIt = () => {
                 <div className="container">
                     <Balance />
                     <IncomeExpenses />
-                    <TransactionList />
-                    <AddTransaction />
+                    <TransactionList shouldFetch={shouldFetch} setShouldFetch={setShouldFetch} />
+                    <AddTransaction onAddTransaction={() => setShouldFetch(true)} />
                 </div>
             </div>
         </GlobalProvider>
