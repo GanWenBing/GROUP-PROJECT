@@ -7,10 +7,21 @@ const TransactionList = () => {
   const [shouldFetch, setShouldFetch] = useState(true)
   const [editItem, setEditItem] = useState(null)
   const [newTitle, setNewTitle] = useState(null)
+  const [categories, setCategories] = useState([])
   const [newCategory, setNewCategory] = useState(null)
   const [newAmount, setNewAmount] = useState(null)
   const [newDescription, setNewDescription] = useState(null)
   const [newDate, setNewDate] = useState(null)
+
+  
+  useEffect(() => {
+    const fetchCategories = async () => {
+        const req = await fetch("http://localhost:3000/categories");
+        const data = await req.json();
+        setCategories(data);
+    };
+    fetchCategories();
+}, []);
 
   useEffect(() => {
     if (shouldFetch) {
@@ -24,6 +35,7 @@ const TransactionList = () => {
         });
     }
   }, [shouldFetch]);
+
 
   const handleDelete = async (id) => {
     await fetch(`http://localhost:3000/expense/listexpense/${id}`, {
@@ -130,15 +142,24 @@ const TransactionList = () => {
                                 <div>
                                   <label for="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
                                   {/* <input name="title" id="title" placeholder={editItem.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" /> */}
-                                  <select name="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" id="title" placeholder={editItem.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} >
+                                  <select name="title" placeholder={editItem.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" id="title" >
+                                  <option value="">--Please choose an option--</option>
                                     <option value="Expense">Expense</option>
                                     <option value="Income">Income</option>
-                                </select>
+                                  </select>
                                 </div>
 
                                 <div>
                                   <label for="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Category</label>
-                                  <input name="category" id="category" placeholder={editItem.category} value={newCategory} onChange={(e) => setNewCategory(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" />
+                                  {/* <input name="category" id="category" placeholder={editItem.category} value={newCategory} onChange={(e) => setNewCategory(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" /> */}
+                                  <select name="category" placeholder={editItem.category} value={newCategory} onChange={(e) => setNewCategory(e.target.value)}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
+                                  <option value="">--Please choose an option--</option>
+                                    {categories.map((category) => (
+                                      <option key={category._id} value={category.category}>
+                                        {category.category}
+                                      </option>
+                                    ))}
+                                  </select>
                                 </div>
                                 <div>
                                   <label for="amount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Amount</label>
