@@ -37,7 +37,7 @@ router.post("/CreateAccount", async (req, res) => {
     }
     const existedUser = await User.findOne({ Email });
     if (existedUser) {
-      return res.status(401).json({ error: "User Exists" })
+      return res.status(401).json({ error: "User Exists. please try another Username" })
     }
     const existUser = await User.findOne({ Username });
     if (existUser) {

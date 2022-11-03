@@ -27,9 +27,10 @@ router.get("/seed", async (req, res) => {
     res.json(expense)
 });
 
-router.get("/", async (req, res) => {
+router.get("/expense/:id", async (req, res) => {
+    const {id} = req.params
     try {
-        const expense = await Expense.find().exec().populate("catergory");
+        const expense = await Expense.find({user:id}).populate("category").exec();
         res.status(200).json(expense);
     } catch (error) {
         res.status(500).json(error);
@@ -72,7 +73,7 @@ router.post("/create", async (req, res) => {
 
 });
 
-router.delete("/listexpense/remove/:id", async (req,res) => {
+router.delete("/listexpense/:id", async (req,res) => {
     const {id} = req.params;
     console.log(id)
     try{

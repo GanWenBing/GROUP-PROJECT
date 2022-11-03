@@ -50,7 +50,7 @@ const LoginForm = () => {
         <>
             <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
                 <div className='hidden sm:block'>
-                    <img className='w-full h-full object-cover' src={expense_picture} alt="" />
+                    <img className='w-full h-full flex justify-center object-contain' src={expense_picture} alt="" />
                 </div>
                 <div className='bg-gray-100 flex flex-col justify-center'>
                     <form className='max-w-[400px] w-full mx-auto bg-white p-4' method='post' onSubmit={handleSubmit}>
@@ -68,8 +68,8 @@ const LoginForm = () => {
                         </div>
                         <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' >Sign In</button>
                         <div className='flex justify-between'>
-                            <p className='flex items-center'><input className='mr-2' type="checkbox" /> Remember Me</p>
-                            <button className='text-blue-600' onClick={()=> navigate("/CreateAccount")}>Create an account</button>
+                            {/* <p className='flex items-center'><input className='mr-2' type="checkbox" /> Remember Me</p> */}
+                            <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' onClick={()=> navigate("/CreateAccount")}>Create an account</button>
                         </div>
                     </form>
                     {/* <div>

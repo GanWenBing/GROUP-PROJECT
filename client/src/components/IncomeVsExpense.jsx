@@ -14,8 +14,9 @@ const IncomeVsExpense = () => {
     fetch(`http://localhost:3000/expense/listexpense/${id}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         let res = Object.values(data.reduce((acc, curr) => {
-          (acc[curr.category] = acc[curr.category] || { name: curr.category, amount: 0 }).amount += curr.amount;
+          (acc[curr.title] = acc[curr.title] || { name: curr.title, amount: 0 }).amount += Math.abs(curr.amount);
           return acc;
         }, {}));
         setData(res);

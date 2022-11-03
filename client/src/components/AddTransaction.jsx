@@ -1,21 +1,30 @@
-import { useState, useContext } from 'react'
-import { GlobalContext } from "../context/GlobalState"
+import { useState, useEffect } from 'react'
 
-const AddTransaction = () => {
+const AddTransaction = ({ onAddTransaction }) => {
     const [title, setTitle] = useState("")
     const [category, setCategory] = useState("")
+    const [categories, setCategories] = useState([])
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
-    const [amount, setAmount] = useState(0)
-    const { addTransaction } = useContext(GlobalContext)
-    // const [error, setError] = useState("");
+    const [amount, setAmount] = useState("")
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const req = await fetch("http://localhost:3000/categories");
+            const data = await req.json();
+            setCategories(data);
+        };
+        fetchCategories();
+    }, []);
+
 
     const onSubmit = e => {
         e.preventDefault();
+       
 
-
-        const newTransaction1 = {
-            // id: Math.floor(Math.random() * 10000),
+        const { id: userId } = JSON.parse(localStorage.getItem("userInfo"))
+        const newTransaction = {
+            user: userId,
             title,
             category,
             description,
@@ -23,57 +32,63 @@ const AddTransaction = () => {
             amount: +amount
         }
 
-        console.log(newTransaction1)
-
-        const data1 = JSON.parse(localStorage.getItem("userInfo"))
-        console.log(data1)
-        newTransaction1["user"] = data1.id;
-        const newTransaction = newTransaction1;
         console.log(newTransaction)
-        
+
 
         fetch("http://localhost:3000/expense/create", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },// send it to express as JSON file
+            },
             body: JSON.stringify(newTransaction)
         })
             .then((response) => {
                 if (response.ok) {
-                    alert('expense created')
+                    onAddTransaction();
+                    setTitle("")
+                    setCategory("")
+                    setDescription("")
+                    setDate("")
+                    setAmount("")
                 } else {
-                    console.log("Oops Something")
+                    console.error("Oops something's wrong")
                 }
-                return response.json()
             })
-            .then((data) => {
-                console.log(data)
-            });
 
-        addTransaction(newTransaction)
     }
 
     return (
         <>
-            <h3>Add new transaction</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-control">
                     <label htmlFor="title">Title</label>
-                    <input
+                    <select name="title" className="border border-gray-400 py-1 px-2 w-full" value={title} onChange={(e) => setTitle(e.target.value)}>
+                        <option value="">--Please choose an option--</option>
+                        <option value="Expense" className="border border-gray-400 py-1 px-2 w-full">Expense</option>
+                        <option value="Income" className="border border-gray-400 py-1 px-2 w-full">Income</option>
+                    </select>
+                    {/* <input
                         type="title"
                         placeholder="Enter text..."
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)} />
+                        onChange={(e) => setTitle(e.target.value)} /> */}
                 </div>
                 <div className="form-control">
                     <label htmlFor="category">Category</label>
-                    <input
+                    <select name="country" className="border border-gray-400 py-1 px-2 w-full" value={category}
+                        onChange={(e) => setCategory(e.target.value)} >
+                        <option value="">--Please choose an option--</option>
+                        {categories.map((category) => (
+                            <option key={category._id} value={category._id }>
+                                {category.category}
+                            </option>
+                        ))}
+                        {/* <input
                         type="category"
                         placeholder="Enter text..."
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)} />
+                        onChange={(e) => setCategory(e.target.value)} /> */}
+                    </select>
                 </div>
                 <div className="form-control">
                     <label htmlFor="description">Description</label>
@@ -92,15 +107,16 @@ const AddTransaction = () => {
                         onChange={(e) => setDate(e.target.value)} />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="amount"
-                    >Amount <br />
-                        (negative - expense, positive - income)</label
-                    >
+                    <label htmlFor="amount">
+                        Amount (Negative for expenses, positive for income)
+                        </label>
+                    <br />
                     <input
                         type="number"
                         placeholder="Enter amount..."
                         value={amount}
-                        onChange={(e) => setAmount(e.target.value)} />
+                        onChange={(e) => setAmount(e.target.value)}
+                        className="p-1 gap-4 " />
                 </div>
                 <button className="btn">Add transaction</button>
             </form>

@@ -4,72 +4,42 @@ import { useNavigate } from 'react-router-dom'
 const NavBar = () => {
   const navigate = useNavigate()
 
-  const handleClickLogout = () =>{
+  const handleClickLogout = () => {
     window.localStorage.clear();
     navigate('/')
   }
 
 
-    return (
-      <>
-        <nav className="bg-gray-800">
+  return (
+    <>
+      <nav className="bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <a
-                href="/Homepage"
+                  href="/Homepage"
                 >
-                <img
-                  className="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                  alt="Workflow"
-                />
+                  <img
+                    className="h-8 w-8"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    alt="Workflow"
+                  />
                 </a>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a
-                    href="#"
+                    href="/Dashboard"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Dashboard
+                    Overview
                   </a>
                   <a
                     href="/Team"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Team
-                  </a>
-
-                  <a
-                    href="/Homepage/Income"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    // onClick={handleClick}
-                  >
-                    Income
-                  </a>
-
-
-                  <a
-                    href="/Homepage/Incomelist"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                   
-                  >
-                    Incomelist
-                  </a>
-
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Reports
-                  </a>
-                  <a
-                    href="/Settings"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Settings
                   </a>
                   <a
                     href="/TrackIt"
@@ -79,7 +49,7 @@ const NavBar = () => {
                   </a>
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium absolute top-4 right-20"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium absolute right-64"
                     onClick={handleClickLogout}
                   >
                     Logout
@@ -133,8 +103,8 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      </>
-    )
-  }
-  
-  export default NavBar
+    </>
+  )
+}
+
+export default NavBar

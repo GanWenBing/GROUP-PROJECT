@@ -5,12 +5,9 @@ const expenseSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    category: {
-        type: String,
-        required: true
-
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Category"
+    category: {   
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
     },
     description: {
         type: String,
@@ -24,10 +21,6 @@ const expenseSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    // userid: {
-    //     type: String,
-    //     required: true
-    // }
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

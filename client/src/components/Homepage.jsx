@@ -1,51 +1,25 @@
 import React from 'react'
 import NavBar from './Navbar'
-import ChartPie from './ChartPie'
-import IncomeVsExpense from './IncomeVsExpense'
-import { useLocation } from 'react-router-dom'
-import Container from './Container'
-import PositiveandNegativeChart from './PositiveandNegativeChart'
 
 const Homepage = () => {
-  // const location = useLocation();
-  // console.log(location.state.name)
-  // const data = JSON.parse(localStorage.getItem("userInfo"))
-  // console.log(data.id)
-
-  //console.log(props)
-
   return (
-    <div>
+    <>
+
       <div>
-        <NavBar />
-        <header className="bg-white shadow">
-          <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+
+        <NavBar/>
+        <section class="mb-40">
+          <div class="text-center bg-gray-50 text-gray-800 py-24 px-6">
+            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">TrackIt <br /><span class="text-blue-600">Track Your Expenses </span><br/>To Stick To Your Budget</h1>
+            <a class="inline-block px-7 py-3 mr-2 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
+            <a class="inline-block px-7 py-3 bg-transparent text-blue-600 font-medium text-sm leading-snug uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Learn more</a>
           </div>
-        </header>
-        <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            <Container />
-            {/* <!-- Replace with your content --> */}
-            <div className=" flex flex-wrap gap-4 px-4 py-6 sm:px-0">
-              <div className=" border-4 border-dashed border-gray-400 rounded-lg h-96 w-2/3">
-                <div> <PositiveandNegativeChart /></div>
-              </div>
-              <div className="border-4 border-dashed border-gray-400 rounded-lg h-96 w-96">
-                <div> <IncomeVsExpense /></div>
-              </div>
-              <div className="border-4 border-dashed border-gray-400 rounded-lg h-96 w-96">
-                <div> <ChartPie /></div>
-              </div>
-              {/* <div className="border-4 border-dashed border-gray-400 rounded-lg h-96 w-2/3">
-                <div> <ChartPie /></div>
-              </div> */}
-            </div>
-            {/* <!-- /End replace --> */}
-          </div>
-        </main>
+        </section>
+
+
       </div>
-    </div>
+
+    </>
   )
 }
 

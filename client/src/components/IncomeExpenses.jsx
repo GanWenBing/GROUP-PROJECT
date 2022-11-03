@@ -1,10 +1,21 @@
-import { GlobalContext } from "../context/GlobalState"
-import { useContext } from "react"
+import { useEffect, useState } from "react";
 
-const IncomeExpenses = () => {
-    const { transactions } = useContext(GlobalContext)
+const IncomeExpenses = ({shouldFetch,
+    setShouldFetch}) => {
+    const [list, setList] = useState([])
 
-    const amounts = transactions.map(transaction => transaction.amount);
+    useEffect(() => {
+        if (shouldFetch) {
+        const userinfo = JSON.parse(localStorage.getItem("userInfo"))
+        const id = userinfo.id
+        fetch(`http://localhost:3000/expense/listexpense/${id}`)
+          .then((response) => response.json())
+          .then((data) =>
+            setList(data))
+            setShouldFetch(false)
+      }}, [shouldFetch]);
+
+    const amounts = list.map(transaction => transaction.amount);
 
     const income = amounts
         .filter(item => item > 0)
