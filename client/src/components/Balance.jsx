@@ -17,9 +17,7 @@ const Balance = ({
                     setList(data));
             setShouldFetch(false);
 
-        }
-
-    }, [shouldFetch]);
+        }}, [shouldFetch]);
 
     // map over all the amounts and use reduce to add them together
     const amounts = list.map(transaction => transaction.amount)

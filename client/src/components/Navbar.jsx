@@ -1,7 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 const NavBar = () => {
+  const [user, setUser] = useState("")
+
+  useEffect(() => {
+    const userinfo = JSON.parse(localStorage.getItem("userInfo"))
+    const id = userinfo.id
+    fetch(`http://localhost:3000/api/user/${id}`)
+      .then((response) => response.json())
+      .then((data) =>
+        setUser(data.Username))
+      }
+  , []);
+  
   const navigate = useNavigate()
 
   const handleClickLogout = () => {
@@ -36,20 +49,32 @@ const NavBar = () => {
                     Overview
                   </a>
                   <a
-                    href="/Team"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Team
-                  </a>
-                  <a
                     href="/TrackIt"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     TrackIt!
                   </a>
                   <a
+                    href="/Team"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Team
+                  </a>
+                  <a
+                    href="/Settings"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Settings
+                  </a>
+                  
+                  <a
+                    className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium absolute right-80"
+                  >
+                    Hi, {user}
+                  </a>
+                  <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium absolute right-64"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium absolute right-60"
                     onClick={handleClickLogout}
                   >
                     Logout

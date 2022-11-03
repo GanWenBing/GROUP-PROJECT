@@ -5,7 +5,7 @@ const Team = () => {
         <>
             <NavBar />
 
-            <h1 class="flex flex-row justify-center font-medium leading-tight text-7xl mt-0 mb-2 text-gray-600 py-10">Meet the team!</h1>
+            <h1 className="flex flex-row justify-center font-medium leading-tight text-7xl mt-0 mb-2 text-gray-600 py-10">Meet the team!</h1>
 
             <div className="flex flex-row justify-center gap-10 py-10">
 

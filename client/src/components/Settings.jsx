@@ -1,115 +1,123 @@
 import NavBar from "./Navbar";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
     const navigate = useNavigate()
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyIbhBPY43ZVcD8_D5Z-nLZo8cjbTLKZ8tr40R-9Ua-QMJxvk0NkHzq5VFIGp0QZQnj_Q/exec'
-        const form = document.forms['google']
+    const [profile, setProfile] = useState({})
+    const [shouldFetch, setShouldFetch] = useState(true)
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-              .then(response => alert("updated！！！"))
-              .catch(error => console.error('Error!', error.message))
+    useEffect(() => {
+        if (shouldFetch) {
+        const userinfo = JSON.parse(localStorage.getItem("userInfo"))
+        const id = userinfo.id
+        fetch(`http://localhost:3000/api/user/${id}`)
+            .then((response) => response.json())
+            .then((data) =>
+                setProfile(data));
+                setShouldFetch(false)
+                
+    }}, [shouldFetch]);
 
-        
-        const data1 = JSON.parse(localStorage.getItem("userInfo"))
-        // const obj = {user: data1.id}
-        // console.log(obj)
-
-
-        const data2= Object.fromEntries(new FormData(event.target))
-        data2["user"] = data1.id;
-        const data = data2;
-        console.log(data)
-
-        fetch("http://localhost:3000/expense/create", {
-            method: "POST",
+    const handleSave = (e) => {
+        e.preventDefault();
+        const userinfo = JSON.parse(localStorage.getItem("userInfo"))
+        const id = userinfo.id
+        const {Username, Password, ConfirmPassword, Email} = profile
+        fetch(`http://localhost:3000/api/userupdate/${id}`, {
+            method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },// send it to express as JSON file
-            body: JSON.stringify(data)
+            },
+            body: JSON.stringify(
+                {
+                    Username, 
+                    Password, 
+                    ConfirmPassword, 
+                    Email
+                }
+            )
         })
             .then((response) => {
                 console.log(response)
                 if (response.ok) {
-                    navigate("/Homepage")
+                    console.log('work')
+                    navigate('/Homepage')
                 } else {
-                    console.log("Oops Something")
+                    console.log("Invalid, pls try again")
                 }
                 return response.json()
             })
             .then((data) => {
-                console.log(data)
+                setProfile(data)
             });
+
         }
 
-       
+   
+    const setdata = (e) => {
+            console.log(e.target)
+            const { name, value } = e.target
+            setProfile((preval) => {
+                return {
+                    ...preval,
+                    [name]: value
+                }
+            })
+        }
 
-    return (
-        <>
-            <NavBar />
 
-            <div className="min-h-screen py-10">
-                <div className="container mx-auto">
-                    <div className=" lg:flex-row w-full lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
-                        <div className="">
-                            <h2 className="text-3xl mb-4">New Expense or Income</h2>
-                            <form method="post" onSubmit={handleSubmit} name='google'>
-                                
+        return (
+            <>
+                <NavBar />
+
+                <div className="min-h-screen py-10">
+                    <div className="container mx-auto">
+                        <div className=" lg:flex-row w-full lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+                            <div className="">
+                                <h2 className="text-3xl mb-4">Edit User</h2>
+                                <form method="post" onSubmit={handleSave} name='google'>
+
                                     <div className="mt-5">
                                         <label>
-                                            title:
+                                            Username:
                                         </label>
-                                        <select name="title" className="border border-gray-400 py-1 px-2 w-full">
-                                           
-                                            <option value="Expense">Expense</option>
-                                            <option value="Income">Income</option>
-                                        </select>
+                                        <input name="Username" placeholder={profile.Username} value={profile.Username} onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+
                                     </div>
-                               
-                                <div className="mt-5">
-                                    <label>
-                                        categoty: </label>
-                                    <input name="category" type="text" className="border border-gray-400 py-1 px-2 w-full"></input>
-                                </div>
-                                <div className="mt-5">
-                                    <label>
-                                        description: </label>
-                                    <input name="description" className="border border-gray-400 py-1 px-2 w-full"></input>
-                                </div>
 
-                                <div className="mt-5">
-                                    <label>
-                                        date:
-                                    </label>
-                                    <input name="date" type="date" className="border border-gray-400 py-1 px-2 w-full"></input>
-                                </div>
+                                    <div className="mt-5">
+                                        <label>
+                                            New Password: </label>
+                                        <input name="Password" type="password"  onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                    </div>
+                                    <div className="mt-5">
+                                        <label>
+                                            Confirm New Password: </label>
+                                        <input name="ConfirmPassword" type="password"  onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                    </div>
 
-
-                                <div className="mt-5">
-                                    <label>
-                                        amount:
-                                    </label>
-                                    <input name="amount" type="number" className="border border-gray-400 py-1 px-2 w-full"></input>
-                                </div>
+                                    <div className="mt-5">
+                                        <label>
+                                            Email Address:
+                                        </label>
+                                        <input name="Email" placeholder={profile.Email} value={profile.Email} onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                    </div>
 
 
-                                <div className="mt-5">
-                                    <button className="w-full bg-purple-500 py-3 text-center text-white">Add Expense</button>
-                                </div>
-                            </form>
+                                    <div className="mt-5">
+                                        <button className="w-full bg-purple-500 py-3 text-center text-white">Update</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div> 
-            </div>
-            
+                </div>
 
-        </>
-    )
-}
 
-export default Settings
+            </>
+        )
+    }
+
+    export default Settings
