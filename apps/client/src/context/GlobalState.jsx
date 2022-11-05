@@ -16,7 +16,7 @@ export default function GlobalProvider({ children }) {
     // Actions 
     async function getTransactions() {
         try {
-         const res= await fetch("http://localhost:3000/expense/listexpense/:id")
+         const res= await fetch("/api/expense/listexpense/:id")
          console.log(res)
     
           dispatch({
@@ -32,7 +32,7 @@ export default function GlobalProvider({ children }) {
 
     async function deleteTransaction(id) {
         try {
-            await fetch(`http://localhost:3000/expense/listexpense/${id}`);
+            await fetch(`/api/3000/expense/listexpense/${id}`);
 
             dispatch({
                 type: 'DELETE_TRANSACTION',

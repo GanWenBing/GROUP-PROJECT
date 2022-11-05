@@ -17,16 +17,6 @@ const AddTransaction = ({ onAddTransaction }) => {
         fetchCategories();
     }, []);
 
-    // useEffect(() => {
-    //     fetch("api/categories", {
-    //         method: "GET",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    // }, []);
-
-
     const onSubmit = e => {
         e.preventDefault();
         const { id: userId } = JSON.parse(localStorage.getItem("userInfo"))
