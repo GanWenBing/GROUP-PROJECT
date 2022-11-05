@@ -10,12 +10,15 @@ const CategoryController = require("./controller/CategoryController")
 //const bcrypt = require('bcrypt');
 
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT || 3000
 //const saltRounds = 10;
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI);
 
 app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve("../client/dist/index.html"));
+});
 
 app.use(cors())
 app.use(express.json())
