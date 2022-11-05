@@ -21,7 +21,7 @@ mongoose.connect(MONGO_URI);
 app.use(cors())
 app.use(express.json())
 
-app.use("/expense", ExpenseController)
+app.use("/api/expense", ExpenseController)
 app.use("/api", UserController)
 app.use("/api/categories", CategoryController)
 
