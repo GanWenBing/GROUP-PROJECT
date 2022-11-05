@@ -21,7 +21,6 @@ mongoose.connect(MONGO_URI);
 app.use(cors())
 app.use(express.json())
 
-app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
 app.use("/expense", ExpenseController)
 app.use("/api", UserController)
 app.use("/categories", CategoryController)
@@ -29,6 +28,7 @@ app.use("/categories", CategoryController)
 app.get("/test", (req, res) => {
   res.send("Hello World!");
 });
+app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
 
 // app.get("/api/users/seed", async (req, res) => {
 //     await User.deleteMany({});
