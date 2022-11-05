@@ -75,7 +75,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                 </div>
                 <div className="form-control">
                     <label htmlFor="category">Category</label>
-                    <select name="country" className="border border-gray-400 py-1 px-2 w-full" value={category}
+                    <select name="category" className="border border-gray-400 py-1 px-2 w-full" value={category}
                         onChange={(e) => setCategory(e.target.value)} >
                         <option value="">--Please choose an option--</option>
                         {categories.map((category) => (
