@@ -15,6 +15,8 @@ const PORT = process.env.PORT ?? 3000;
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI);
 
+app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
+
 app.use(cors())
 app.use(express.json())
 app.use("/expense", ExpenseController)
@@ -22,12 +24,12 @@ app.use("/api", UserController)
 app.use("/categories", CategoryController)
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
+  res.send("Hello World!");
+});
 
 // app.get("/api/users/seed", async (req, res) => {
 //     await User.deleteMany({});
-  
+
 //     const users = await User.insertMany([
 //       {
 //         Username: "admin",
@@ -104,8 +106,8 @@ app.get("/", (req, res) => {
 //   });
 
 mongoose.connection.once("open", () => {
-    console.log("Connected to Mongodb");
-    app.listen(PORT, () => {
-      console.log(`Example app listening on port ${PORT}`);
-    });
+  console.log("Connected to Mongodb");
+  app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`);
   });
+});
