@@ -10,7 +10,7 @@ const AddTransaction = ({ onAddTransaction }) => {
 
     useEffect(() => {
         const fetchCategories = async () => {
-            const req = await fetch("http://localhost:3000/categories");
+            const req = await fetch("/api/categories");
             const data = await req.json();
             setCategories(data);
         };
@@ -42,7 +42,7 @@ const AddTransaction = ({ onAddTransaction }) => {
         console.log(newTransaction)
 
 
-        fetch("http://localhost:3000/expense/create", {
+        fetch("/api/expense/create", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

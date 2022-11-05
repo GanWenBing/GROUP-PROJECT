@@ -12,7 +12,7 @@ const Settings = () => {
         if (shouldFetch) {
         const userinfo = JSON.parse(localStorage.getItem("userInfo"))
         const id = userinfo.id
-        fetch(`http://localhost:3000/api/user/${id}`)
+        fetch(`/api/user/${id}`)
             .then((response) => response.json())
             .then((data) =>
                 setProfile(data));
@@ -25,7 +25,7 @@ const Settings = () => {
         const userinfo = JSON.parse(localStorage.getItem("userInfo"))
         const id = userinfo.id
         const {Username, Password, ConfirmPassword, Email} = profile
-        fetch(`http://localhost:3000/api/userupdate/${id}`, {
+        fetch(`/api/userupdate/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'

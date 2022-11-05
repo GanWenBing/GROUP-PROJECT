@@ -23,7 +23,7 @@ app.use(express.json())
 
 app.use("/expense", ExpenseController)
 app.use("/api", UserController)
-app.use("/categories", CategoryController)
+app.use("/api/categories", CategoryController)
 
 app.get("/test", (req, res) => {
   res.send("Hello World!");

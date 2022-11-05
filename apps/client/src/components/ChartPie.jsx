@@ -9,7 +9,7 @@ const ChartPie = () => {
     useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`http://localhost:3000/expense/expense/${id}`)
+    fetch(`/api/expense/expense/${id}`)
         .then((response) => response.json())
         .then((data) =>{
           console.log(data)

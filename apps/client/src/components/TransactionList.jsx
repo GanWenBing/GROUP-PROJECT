@@ -18,7 +18,7 @@ const TransactionList = ({
   
   useEffect(() => {
     const fetchCategories = async () => {
-        const req = await fetch("http://localhost:3000/categories");
+        const req = await fetch("/api/categories");
         const data = await req.json();
         console.log(data)
         setCategories(data);
@@ -30,7 +30,7 @@ const TransactionList = ({
     if (shouldFetch) {
       const userinfo = JSON.parse(localStorage.getItem("userInfo"))
       const id = userinfo.id
-      fetch(`http://localhost:3000/expense/expense/${id}`)
+      fetch(`/api/expense/expense/${id}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data)
@@ -42,7 +42,7 @@ const TransactionList = ({
 
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:3000/expense/listexpense/${id}`, {
+    await fetch(`/api/expense/listexpense/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': "application/json"
@@ -69,7 +69,7 @@ const TransactionList = ({
     
     const id = editItem._id;
     const {title, category, amount, description, date} = editItem
-    fetch(`http://localhost:3000/expense/update/${id}`, {
+    fetch(`/api/expense/update/${id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
