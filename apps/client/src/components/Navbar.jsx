@@ -8,7 +8,7 @@ const NavBar = () => {
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`http://localhost:3000/api/user/${id}`)
+    fetch(`api/user/${id}`)
       .then((response) => response.json())
       .then((data) =>
         setUser(data.Username))

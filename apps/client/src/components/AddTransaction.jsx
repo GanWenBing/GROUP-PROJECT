@@ -20,8 +20,6 @@ const AddTransaction = ({ onAddTransaction }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-       
-
         const { id: userId } = JSON.parse(localStorage.getItem("userInfo"))
         const newTransaction = {
             user: userId,
