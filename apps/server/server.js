@@ -17,17 +17,16 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI);
 
 
-app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
-
 
 app.use(cors())
-
 app.use(express.json())
+
+app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
 app.use("/expense", ExpenseController)
 app.use("/api", UserController)
 app.use("/categories", CategoryController)
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.send("Hello World!");
 });
 
