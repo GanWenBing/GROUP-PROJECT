@@ -16,12 +16,12 @@ const PORT = process.env.PORT || 3000
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI);
 
+
 app.use(express.static("../client/dist")); // creates a route for everything inside the public folder
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve("../client/dist/index.html"));
-});
+
 
 app.use(cors())
+
 app.use(express.json())
 app.use("/expense", ExpenseController)
 app.use("/api", UserController)
@@ -108,6 +108,10 @@ app.get("/", (req, res) => {
 //       res.status(200).json(foundUsers);
 //     });
 //   });
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve("../client/dist/index.html"));
+});
 
 mongoose.connection.once("open", () => {
   console.log("Connected to Mongodb");

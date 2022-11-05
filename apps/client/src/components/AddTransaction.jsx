@@ -17,6 +17,15 @@ const AddTransaction = ({ onAddTransaction }) => {
         fetchCategories();
     }, []);
 
+    // useEffect(() => {
+    //     fetch("api/categories", {
+    //         method: "GET",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    // }, []);
+
 
     const onSubmit = e => {
         e.preventDefault();
@@ -77,7 +86,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                         onChange={(e) => setCategory(e.target.value)} >
                         <option value="">--Please choose an option--</option>
                         {categories.map((category) => (
-                            <option key={category._id} value={category._id }>
+                            <option key={category._id} value={category._id}>
                                 {category.category}
                             </option>
                         ))}
