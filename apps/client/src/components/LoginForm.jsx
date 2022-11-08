@@ -32,7 +32,7 @@ const LoginForm = () => {
                 if (response.ok) {
                    console.log("ok")
                     navigate("/Homepage");
-                    // window.location.reload("/Homepage");
+                    window.location.reload("/Homepage");
                     //<Navigate to="/Homepage" replace state={userid} />
                 } else {
                     setError("Invalid, please try again")
