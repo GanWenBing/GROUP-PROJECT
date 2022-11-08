@@ -63,7 +63,7 @@ const PositiveandNegativeChart = () => {
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`/api/3000/expense/listexpense/${id}`)
+    fetch(`/api/expense/listexpense/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -82,9 +82,9 @@ const PositiveandNegativeChart = () => {
       data={chart}
       margin={{
         top: 50,
-            right: 30,
-            left: 20,
-            bottom: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
@@ -92,8 +92,8 @@ const PositiveandNegativeChart = () => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="expense" fill="#8884d8" />
-      <Bar dataKey="income" fill="#82ca9d" />
+      <Bar dataKey="expense" fill="#0088FE" />
+      <Bar dataKey="income" fill="#00C49F" />
     </BarChart>
 
     // <BarChart

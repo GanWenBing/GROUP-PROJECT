@@ -45,7 +45,7 @@ const ChartPie = () => {
                 {`${(percent * 100).toFixed(0)}%`}
             </text> 
             <text x={cx} y={cy} dy={8} textAnchor="middle">
-            Total
+            Expense Category
           </text>  
           </g>
             

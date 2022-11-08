@@ -6,24 +6,23 @@ const Settings = () => {
     const navigate = useNavigate()
 
     const [profile, setProfile] = useState({})
-    const [shouldFetch, setShouldFetch] = useState(true)
+    //const [shouldFetch, setShouldFetch] = useState(true)
+    const [error, setError] = useState()
 
     useEffect(() => {
-        if (shouldFetch) {
         const userinfo = JSON.parse(localStorage.getItem("userInfo"))
         const id = userinfo.id
         fetch(`/api/user/${id}`)
             .then((response) => response.json())
             .then((data) =>
                 setProfile(data));
-                setShouldFetch(false)
-                
-    }}, [shouldFetch]);
+                }, []);
 
     const handleSave = (e) => {
         e.preventDefault();
         const userinfo = JSON.parse(localStorage.getItem("userInfo"))
         const id = userinfo.id
+        console.log(id)
         const {Username, Password, ConfirmPassword, Email} = profile
         fetch(`/api/userupdate/${id}`, {
             method: "PUT",
@@ -43,14 +42,16 @@ const Settings = () => {
                 console.log(response)
                 if (response.ok) {
                     console.log('work')
-                    navigate('/Homepage')
+                    navigate('/')
                 } else {
                     console.log("Invalid, pls try again")
                 }
                 return response.json()
             })
             .then((data) => {
+                console.log(data)
                 setProfile(data)
+                setError(data.error)
             });
 
         }
@@ -66,7 +67,7 @@ const Settings = () => {
                 }
             })
         }
-
+    
 
         return (
             <>
@@ -77,7 +78,7 @@ const Settings = () => {
                         <div className=" lg:flex-row w-full lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
                             <div className="">
                                 <h2 className="text-3xl mb-4">Edit User</h2>
-                                <form method="post" onSubmit={handleSave} name='google'>
+                                <form method="post" onSubmit={handleSave}>
 
                                     <div className="mt-5">
                                         <label>
@@ -90,12 +91,12 @@ const Settings = () => {
                                     <div className="mt-5">
                                         <label>
                                             New Password: </label>
-                                        <input name="Password" type="password"  onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                        <input name="Password" type="password" onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
                                     </div>
                                     <div className="mt-5">
                                         <label>
                                             Confirm New Password: </label>
-                                        <input name="ConfirmPassword" type="password"  onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                        <input name="ConfirmPassword" type="password" onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
                                     </div>
 
                                     <div className="mt-5">
@@ -110,6 +111,10 @@ const Settings = () => {
                                         <button className="w-full bg-purple-500 py-3 text-center text-white">Update</button>
                                     </div>
                                 </form>
+                                <div className="mt-5 text-center text-red-600">
+                                        {error}
+                                    </div>
+
                             </div>
                         </div>
                     </div>

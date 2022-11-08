@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 
 const Container = () => {
     const [stat, setStat] = useState()
+    const [expense, setExpense] = useState()
+    const [income, setIncome] = useState()
 
     useEffect(() => {
         const userinfo = JSON.parse(localStorage.getItem("userInfo"))
@@ -15,25 +17,33 @@ const Container = () => {
               (acc[curr.title] = acc[curr.title] || { name: curr.title, amount: 0 }).amount += Math.abs(curr.amount);
               return acc;
             }, {}));
-            setStat(res[0].amount-res[1].amount)
+            if(res[0].name ==='Expense'){
+                setStat(res[1].amount - res[0].amount)
+                setExpense(res[0].amount)
+                setIncome(res[1].amount)
+            }else{
+                setStat(res[0].amount-res[1].amount)
+                setExpense(res[1].amount)
+                setIncome(res[0].amount)
+            }
           });
       }, []);
 
     return (
         <div className="grid gap-8 space-x-1 lg:grid-cols-6">
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
+            <div className="px-4 py-4 bg-cyan-100 border-2 border-gray-400 rounded">
             <p className="text-center text-gray-500">Balance</p>
                 <h3 className="text-2xl text-center text-gray-800">{stat}</h3>
             </div>
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
-                <h3 className="text-2xl text-center text-gray-800">20</h3>
-                <p className="text-center text-gray-500">view</p>
+            <div className="px-4 py-4 bg-red-100 border-2 border-gray-400 rounded">
+                <p className="text-center text-gray-500">Expense</p>
+                <h3 className="text-2xl text-center text-gray-800">{expense}</h3>
             </div>
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
-                <h3 className="text-2xl text-center text-gray-800">30</h3>
-                <p className="text-center text-gray-500">view </p>
+            <div className="px-4 py-4 bg-green-100 border-2 border-gray-400 rounded">
+                <p className="text-center text-gray-500">Income</p>
+                <h3 className="text-2xl text-center text-gray-800">{income}</h3>
             </div>
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
+            {/* <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
                 <h3 className="text-2xl text-center text-gray-800">40</h3>
                 <p className="text-center text-gray-500">view</p>
             </div>
@@ -44,7 +54,7 @@ const Container = () => {
             <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
                 <h3 className="text-2xl text-center text-gray-800">60</h3>
                 <p className="text-center text-gray-500">view</p>
-            </div>
+            </div> */}
 
         </div>
     )

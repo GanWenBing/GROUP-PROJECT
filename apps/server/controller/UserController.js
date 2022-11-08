@@ -24,7 +24,6 @@ router.get("/users/seed", async (req, res) => {
 
 router.post("/CreateAccount", async (req, res) => {
   const { Username, Password, ConfirmPassword, Email } = req.body;
-
   const encryptedPassword = await bcrypt.hash(Password, saltRounds);
   const encryptedConfirmPassword = await bcrypt.hash(ConfirmPassword, saltRounds);
   var validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -32,12 +31,12 @@ router.post("/CreateAccount", async (req, res) => {
     if (Password !== ConfirmPassword) {
       return res.status(401).json({ error: "Password did not match" })
     }
-    if (!Email.match(validate)) {
+    if (!validate.test(Email)) {
       return res.status(401).json({ error: "invalid email address" })
     }
-    const existedUser = await User.findOne({ Email });
-    if (existedUser) {
-      return res.status(401).json({ error: "User Exists. please try another Username" })
+    const existedEmail = await User.findOne({ Email });
+    if (existedEmail) {
+      return res.status(401).json({ error: "Email is registered" })
     }
     const existUser = await User.findOne({ Username });
     if (existUser) {
@@ -106,16 +105,53 @@ router.get("/user/:id", async (req, res) => {
   }
 })
 
-router.put("/userupdate/:id", (req,res) => {
-  const {id} = req.params;
-  User.findByIdAndUpdate(id, req.body, (err, updated) =>{
-      if (err) {
-          res.status(400).json({ error: err.message });
-        }
-      else{
-        res.status(200).json(updated);
-      }
+router.put("/userupdate/:id", async (req,res) => {
+  const { id } = req.params;
+  const Username = req.body.Username;
+  const Password = await bcrypt.hash(req.body.Password, saltRounds);
+  const ConfirmPassword = await bcrypt.hash(req.body.ConfirmPassword, saltRounds);
+  const Email = req.body.Email;
+  var validated = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  try{
+  if(req.body.Password!= req.body.ConfirmPassword){
+    return res.status(401).json({ error: "Password did not match" })
+  }
+
+
+  // if(!validated.test(Email)){
+  //   return res.status(401).json({ error: "invalid email address" });
+  // }
+
+  // const existedEmail = await User.findOne({Email});
+  // if(existedEmail){
+  //   if(!(existedEmail.id == id)){
+  //     return res.status(401).json({ error: "Email is registered" })
+  //   }
+  // }
+  // const existedUser = await User.findOne({ Username });
+  // //console.log(existedUser.Email==Email)
+  // if (existedUser) {
+  //   if(!(existedUser.id==id)){
+  //     return res.status(401).json({ error: "User Exist" })
+  //   }  
+  // }
+
+  User.findByIdAndUpdate(id, { $set: { Username: Username, Password: Password, ConfirmPassword: ConfirmPassword, Email: Email } }, (err, updated) => {
+    if (err) {
+      res.status(401).json({ error: err.message });
+    }
+    else {
+      res.status(200).json(updated);
+    }
   })
+}
+catch(error){
+  return res.status(401).json({ error: "Invalid" })
+}
 })
 
+
+
 module.exports = router;
+

@@ -71,7 +71,7 @@ const CreateAccount = () => {
                         <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white'>Create</button>
                     </form>
                 </div>
-                <div className='bg-gray-100 flex flex-col justify-center'>
+                <div className='bg-gray-100 max-h-10 flex flex-col justify-center'>
                     <div className='max-w-[400px] w-full mx-auto bg-white p-4'>
                         <a href="/">
                             <button className='w-full border my-5 py-2 bg-gray-600 hover:bg-gray-500 text-white'>Cancel</button>
