@@ -117,25 +117,23 @@ router.put("/userupdate/:id", async (req,res) => {
   if(req.body.Password!= req.body.ConfirmPassword){
     return res.status(401).json({ error: "Password did not match" })
   }
+  if(!validated.test(Email)){
+    return res.status(401).json({ error: "invalid email address" });
+  }
 
-
-  // if(!validated.test(Email)){
-  //   return res.status(401).json({ error: "invalid email address" });
-  // }
-
-  // const existedEmail = await User.findOne({Email});
-  // if(existedEmail){
-  //   if(!(existedEmail.id == id)){
-  //     return res.status(401).json({ error: "Email is registered" })
-  //   }
-  // }
-  // const existedUser = await User.findOne({ Username });
-  // //console.log(existedUser.Email==Email)
-  // if (existedUser) {
-  //   if(!(existedUser.id==id)){
-  //     return res.status(401).json({ error: "User Exist" })
-  //   }  
-  // }
+  const existedEmail = await User.findOne({Email});
+  if(existedEmail){
+    if(!(existedEmail.id == id)){
+      return res.status(401).json({ error: "Email is registered" })
+    }
+  }
+  const existedUser = await User.findOne({ Username });
+  //console.log(existedUser.Email==Email)
+  if (existedUser) {
+    if(!(existedUser.id==id)){
+      return res.status(401).json({ error: "User Exist" })
+    }  
+  }
 
   User.findByIdAndUpdate(id, { $set: { Username: Username, Password: Password, ConfirmPassword: ConfirmPassword, Email: Email } }, (err, updated) => {
     if (err) {
