@@ -1,64 +1,64 @@
-import { createContext, useReducer } from "react"
-import AppReducer from './AppReducer'
+// import { createContext, useReducer } from "react"
+// import AppReducer from './AppReducer'
 
-// Initial state 
-const initialState = {
-    transactions: []
-}
+// // Initial state 
+// const initialState = {
+//     transactions: []
+// }
 
-// Create context
-export const GlobalContext = createContext(initialState);
+// // Create context
+// export const GlobalContext = createContext(initialState);
 
-// Provider component
-export default function GlobalProvider({ children }) {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+// // Provider component
+// export default function GlobalProvider({ children }) {
+//     const [state, dispatch] = useReducer(AppReducer, initialState);
 
-    // Actions 
-    async function getTransactions() {
-        try {
-         const res= await fetch("/api/expense/listexpense/:id")
-         console.log(res)
+//     // Actions 
+//     async function getTransactions() {
+//         try {
+//          const res= await fetch("/api/expense/listexpense/:id")
+//          console.log(res)
     
-          dispatch({
-            type: 'GET_TRANSACTIONS',
-            payload: res.data.data
-          });
-        } catch (err) {
-            res.status(500).json({msg: "error"})
-        }
-      }
+//           dispatch({
+//             type: 'GET_TRANSACTIONS',
+//             payload: res.data.data
+//           });
+//         } catch (err) {
+//             res.status(500).json({msg: "error"})
+//         }
+//       }
 
     
 
-    async function deleteTransaction(id) {
-        try {
-            await fetch(`/api/3000/expense/listexpense/${id}`);
+//     async function deleteTransaction(id) {
+//         try {
+//             await fetch(`/api/3000/expense/listexpense/${id}`);
 
-            dispatch({
-                type: 'DELETE_TRANSACTION',
-                payload: _id
-            });
-        } catch (err) {
-            res.status(500).json({msg: "error"})
-        }
-    }
+//             dispatch({
+//                 type: 'DELETE_TRANSACTION',
+//                 payload: _id
+//             });
+//         } catch (err) {
+//             res.status(500).json({msg: "error"})
+//         }
+//     }
 
-    function addTransaction(transaction) {
+//     function addTransaction(transaction) {
        
-        dispatch({
-            type: 'ADD_TRANSACTION',
-            payload: transaction
-        })
-    }
+//         dispatch({
+//             type: 'ADD_TRANSACTION',
+//             payload: transaction
+//         })
+//     }
 
-    return (
-        <GlobalContext.Provider value={{
-            transactions: state.transactions,
-            getTransactions,
-            deleteTransaction, 
-            addTransaction
+//     return (
+//         <GlobalContext.Provider value={{
+//             transactions: state.transactions,
+//             getTransactions,
+//             deleteTransaction, 
+//             addTransaction
             
-        }}>
-            {children}
-        </GlobalContext.Provider >);
-}
+//         }}>
+//             {children}
+//         </GlobalContext.Provider >);
+// }

@@ -64,11 +64,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                         <option value="Expense" className="border border-gray-400 py-1 px-2 w-full">Expense</option>
                         <option value="Income" className="border border-gray-400 py-1 px-2 w-full">Income</option>
                     </select>
-                    {/* <input
-                        type="title"
-                        placeholder="Enter text..."
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)} /> */}
+                    
                 </div>
                 <div className="form-control">
                     <label htmlFor="category">Category</label>
@@ -80,11 +76,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                                 {category.category}
                             </option>
                         ))}
-                        {/* <input
-                        type="category"
-                        placeholder="Enter text..."
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)} /> */}
+                       
                     </select>
                 </div>
                 <div className="form-control">

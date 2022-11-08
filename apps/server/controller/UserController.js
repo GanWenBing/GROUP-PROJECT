@@ -120,7 +120,6 @@ router.put("/userupdate/:id", async (req,res) => {
   if(!validated.test(Email)){
     return res.status(401).json({ error: "invalid email address" });
   }
-
   const existedEmail = await User.findOne({Email});
   if(existedEmail){
     if(!(existedEmail.id == id)){
@@ -128,7 +127,6 @@ router.put("/userupdate/:id", async (req,res) => {
     }
   }
   const existedUser = await User.findOne({ Username });
-  //console.log(existedUser.Email==Email)
   if (existedUser) {
     if(!(existedUser.id==id)){
       return res.status(401).json({ error: "User Exist" })

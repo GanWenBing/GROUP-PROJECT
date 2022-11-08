@@ -5,14 +5,15 @@ import "../App.css"
 import IncomeExpenses from "./IncomeExpenses";
 import TransactionList from "./TransactionList";
 import AddTransaction from "./AddTransaction";
-import GlobalProvider from "../context/GlobalState"
+//import GlobalProvider from "../context/GlobalState"
 
 const TrackIt = () => {
     const [shouldFetch, setShouldFetch] = useState(true)
 
     return (
-        <GlobalProvider>
-            <NavBar />
+        // <GlobalProvider>
+        <>
+        <NavBar />
             <div className="body">
                 <div className="container">
                     <Balance shouldFetch={shouldFetch} setShouldFetch={setShouldFetch}/>
@@ -21,7 +22,9 @@ const TrackIt = () => {
                     <AddTransaction onAddTransaction={() => setShouldFetch(true)} />
                 </div>
             </div>
-        </GlobalProvider>
+        </>
+            
+        // </GlobalProvider>
     )
 }
 
