@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
     const navigate = useNavigate()
-    const [shouldFetch, setShouldFetch] = useState(true)
+   // const [shouldFetch, setShouldFetch] = useState(true)
     const [update, setUpdate] = useState(true)
     const [profile, setProfile] = useState({})
     //const [shouldFetch, setShouldFetch] = useState(true)
@@ -31,8 +31,9 @@ const Settings = () => {
         const id = userinfo.id
         console.log(id)
         const { Username, Password, ConfirmPassword, Email } = profile
-        console.log(profile)
-        if (profile.Password != profile.ConfirmPassword) {
+        console.log(Password)
+        if (Password != ConfirmPassword) {
+            console.log("Hi")
             return setError("Password did not match")    
         } else {
             fetch(`/api/userupdate/${id}`, {
@@ -103,7 +104,7 @@ const Settings = () => {
                                     <div className="mt-5">
                                         <label>
                                             New Password: </label>
-                                        <input name="Password" type="password" placeholder="key in password" onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
+                                        <input name="Password" type="password" onChange={setdata} className="border border-gray-400 py-1 px-2 w-full"></input>
                                     </div>
                                     <div className="mt-5">
                                         <label>
