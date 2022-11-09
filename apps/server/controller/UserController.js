@@ -95,6 +95,7 @@ router.get("/listusers", async (req, res) => { // Start of get
   });
 });
 
+
 router.get("/user/:id", async (req, res) => {
   const { id } = req.params
   try {
@@ -113,20 +114,24 @@ router.put("/userupdate/:id", async (req,res) => {
   const Email = req.body.Email;
   var validated = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+
   try{
-  if(req.body.Password!= req.body.ConfirmPassword){
-    return res.status(401).json({ error: "Password did not match" })
-  }
+    const existedUser = await User.findOne({ Username });
+    const existedEmail = await User.findOne({Email});
+  // if(req.body.Password!= req.body.ConfirmPassword){
+  //   return res.status(401).json({ error: "Password did not match" })
+  // }
+  // else if
   if(!validated.test(Email)){
     return res.status(401).json({ error: "invalid email address" });
   }
-  const existedEmail = await User.findOne({Email});
+  
   if(existedEmail){
     if(!(existedEmail.id == id)){
       return res.status(401).json({ error: "Email is registered" })
-    }
   }
-  const existedUser = await User.findOne({ Username });
+}
+  
   if (existedUser) {
     if(!(existedUser.id==id)){
       return res.status(401).json({ error: "User Exist" })
@@ -143,7 +148,7 @@ router.put("/userupdate/:id", async (req,res) => {
   })
 }
 catch(error){
-  return res.status(401).json({ error: "Invalid" })
+  return res.status(401).json("error")
 }
 })
 
