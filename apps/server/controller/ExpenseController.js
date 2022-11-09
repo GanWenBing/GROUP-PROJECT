@@ -8,67 +8,67 @@ router.get("/seed", async (req, res) => {
     const expense = await Expense.insertMany([
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de2",
+            category: "636a3739f5d4c6c63e9383ce",
             description: "utilise",
             date: "2022-10-31",
             amount: -300,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de1",
+            category: "636a3739f5d4c6c63e9383cd",
             description: "go to thailand",
             date: "2022-10-31",
             amount: -150,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de1",
+            category: "636a3739f5d4c6c63e9383cd",
             description: "go to korea",
             date: "2022-10-15",
             amount: -120,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Income",
-            category: "636903ddd7a536e5eeda2de0",
+            category: "636a3739f5d4c6c63e9383cc",
             description: "payday",
             date: "2022-10-01",
             amount: 3000,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de3",
+            category: "636a3739f5d4c6c63e9383cf",
             description: "GA",
             date: "2022-10-03",
             amount: -400,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de4",
+            category: "636a3739f5d4c6c63e9383d0",
             description: "",
             date: "2022-10-09",
             amount: -400,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de5",
+            category: "636a3739f5d4c6c63e9383d1",
             description: "food",
             date: "2022-10-09",
             amount: -50,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
         {
             title: "Expense",
-            category: "636903ddd7a536e5eeda2de6",
+            category: "636a3739f5d4c6c63e9383d2",
             description: "tax",
             date: "2022-10-09",
             amount: -140,
-            user: "636903ccd7a536e5eeda2ddd"
+            user: "636a3d6bfdad84045c77790e"
         },
 
     ]);
