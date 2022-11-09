@@ -72,10 +72,6 @@ const Settings = () => {
     const setdata = (e) => {
         console.log(e.target)
         const { name, value } = e.target
-        if(name=="Password"){
-            console.log(value)
-        }
-
         setProfile((preval) => {
             return {
                 ...preval,
