@@ -37,36 +37,36 @@ const Settings = () => {
             console.log("Hi")
             return setError("Password did not match")    
         } 
-        //else {
-        //     fetch(`/api/userupdate/${id}`, {
-        //         method: "PUT",
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(
-        //             {
-        //                 Username,
-        //                 Password,
-        //                 ConfirmPassword,
-        //                 Email
-        //             }
-        //         )
-        //     })
-        //         .then((response) => {
-        //             console.log(response)
-        //             if (response.ok) {
-        //                 console.log('work')
-        //                 navigate('/')
-        //             } else {
-        //                 console.log("Invalid, pls try again")
-        //             }
-        //             return response.json()
-        //         })
-        //         .then((data) => {
-        //             console.log(data)
-        //             setError(data.error)
-        //         });
-        // }
+        else {
+            fetch(`/api/userupdate/${id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        Username,
+                        Password,
+                        ConfirmPassword,
+                        Email
+                    }
+                )
+            })
+                .then((response) => {
+                    console.log(response)
+                    if (response.ok) {
+                        console.log('work')
+                        navigate('/')
+                    } else {
+                        console.log("Invalid, pls try again")
+                    }
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    setError(data.error)
+                });
+        }
 
     }
 
