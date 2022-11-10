@@ -21,7 +21,7 @@ const CreateAccount = () => {
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
-            },// send it to express as JSON file
+            },
             body: JSON.stringify(data)
         })
             .then((response) => {

@@ -57,7 +57,6 @@ const Settings = () => {
                         navigate('/')
                     } else {
                         console.log("Invalid, pls try again")
-                        // setUpdate(false)
                     }
                     return response.json()
                 })
