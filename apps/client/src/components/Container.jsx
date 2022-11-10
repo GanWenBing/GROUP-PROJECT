@@ -43,19 +43,6 @@ const Container = () => {
                 <p className="text-center text-gray-500">Income</p>
                 <h3 className="text-2xl text-center text-gray-800">{income}</h3>
             </div>
-            {/* <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
-                <h3 className="text-2xl text-center text-gray-800">40</h3>
-                <p className="text-center text-gray-500">view</p>
-            </div>
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
-                <h3 className="text-2xl text-center text-gray-800">50</h3>
-                <p className="text-center text-gray-500">view</p>
-            </div>
-            <div className="px-4 py-4 bg-white border-2 border-gray-400 rounded">
-                <h3 className="text-2xl text-center text-gray-800">60</h3>
-                <p className="text-center text-gray-500">view</p>
-            </div> */}
-
         </div>
     )
 }

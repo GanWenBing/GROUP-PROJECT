@@ -7,9 +7,6 @@ import { useLocation } from 'react-router-dom'
 const LoginForm = () => {
     
     const [error, setError] = useState("");
-    // const [userid, setUserid] = useState("erf");
-    
-   // const {state} = useLocation()
    
     const navigate = useNavigate();
 
@@ -23,8 +20,7 @@ const LoginForm = () => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },// send it to express as JSON file
+            },
             body: JSON.stringify(data)
         })
             .then((response) => {
@@ -33,7 +29,6 @@ const LoginForm = () => {
                    console.log("ok")
                     navigate("/Homepage");
                     window.location.reload("/Homepage");
-                    //<Navigate to="/Homepage" replace state={userid} />
                 } else {
                     setError("Invalid, please try again")
                 }
@@ -41,9 +36,6 @@ const LoginForm = () => {
             })
             .then((data) => {
                 localStorage.setItem("userInfo", JSON.stringify(data))
-                // const data1 = JSON.parse(localStorage.getItem("userInfo"))
-                // console.log(data1.id)
-                // setUserid(data1.id)
             });
     }
 
@@ -69,13 +61,9 @@ const LoginForm = () => {
                         </div>
                         <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' >Sign In</button>
                         <div className='flex justify-between'>
-                            {/* <p className='flex items-center'><input className='mr-2' type="checkbox" /> Remember Me</p> */}
                             <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' onClick={()=> navigate("/CreateAccount")}>Create an account</button>
                         </div>
                     </form>
-                    {/* <div>
-                        {userid}
-                    </div> */}
                 </div>
             </div>
         </>

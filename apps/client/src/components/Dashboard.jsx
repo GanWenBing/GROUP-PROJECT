@@ -2,11 +2,8 @@ import React from 'react'
 import NavBar from './Navbar'
 import ChartPie from './ChartPie'
 import IncomeVsExpense from './IncomeVsExpense'
-import { useLocation } from 'react-router-dom'
-import {useState} from 'react'
 import Container from './Container'
 import PositiveandNegativeChart from './PositiveandNegativeChart'
-import ReactLoading from 'react-loading'
 
 const Dashboard = () => {
 
@@ -34,11 +31,7 @@ const Dashboard = () => {
               <div className="border-4 border-dashed border-gray-400 rounded-lg h-96 w-96">
                 <div> <ChartPie /></div>
               </div>
-              {/* <div className="border-4 border-dashed border-gray-400 rounded-lg h-96 w-2/3">
-                <div> <ChartPie /></div>
-              </div> */}
             </div>
-            {/* <!-- /End replace --> */}
           </div>
         </main>
       </div>

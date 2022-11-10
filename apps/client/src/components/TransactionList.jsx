@@ -8,12 +8,7 @@ const TransactionList = ({
 }) => {
   const [transactions, setTransactions] = useState([])
   const [editItem, setEditItem] = useState(null)
-  const [newTitle, setNewTitle] = useState(null)
   const [categories, setCategories] = useState([])
-  const [newCategory, setNewCategory] = useState(null)
-  const [newAmount, setNewAmount] = useState(null)
-  const [newDescription, setNewDescription] = useState(null)
-  const [newDate, setNewDate] = useState(null)
 
   
   useEffect(() => {
@@ -47,9 +42,7 @@ const TransactionList = ({
       headers: {
         'Content-Type': "application/json"
       },
-      // body: JSON.stringify(transaction)
     })
-      // const json = await response.json()
       .then((response) => {
         if (response.ok) {
           setShouldFetch(true)
@@ -162,7 +155,6 @@ const TransactionList = ({
                               <form className="space-y-6" action="#">
                                 <div>
                                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-                                  {/* <input name="title" id="title" placeholder={editItem.title} value={newTitle} onChange={(e) => setNewTitle(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" /> */}
                                   <select name="title" placeholder={editItem.title} value={editItem.title} onChange={setdata}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" id="title" >
                                   <option value="">--Please choose an option--</option>
                                     <option value="Expense">Expense</option>
@@ -172,7 +164,6 @@ const TransactionList = ({
 
                                 <div>
                                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Category</label>
-                                  {/* <input name="category" id="category" placeholder={editItem.category} value={newCategory} onChange={(e) => setNewCategory(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" /> */}
                                   <select name="category" placeholder={editItem.category} value={editItem.category?.category} onChange={setdata}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
                                   <option value="">--Please choose an option--</option>
                                     {categories.map((category) => (

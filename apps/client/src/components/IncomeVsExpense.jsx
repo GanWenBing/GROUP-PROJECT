@@ -6,8 +6,6 @@ const IncomeVsExpense = () => {
 
   const [data, setData] = useState([])
 
-  // const userinfo = JSON.parse(localStorage.getItem("userInfo"))
-  // const id = userinfo.id
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id

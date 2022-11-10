@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Team from "./components/Team"
 import TrackIt from "./components/TrackIt";
 import Settings from './components/Settings'
-import Modal from "./components/Modal";
+
 
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
       <Route path='/Team' element={<Team/>} />
       <Route path='/TrackIt' element={<TrackIt/>} />
       <Route path='/Settings' element={<Settings/>} />
-      <Route path='/Modal' element={<Modal/>} />
     </Routes>
   </BrowserRouter>
     </>

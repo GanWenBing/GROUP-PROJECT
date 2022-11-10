@@ -19,7 +19,6 @@ const Balance = ({
 
         }}, [shouldFetch]);
 
-    // map over all the amounts and use reduce to add them together
     const amounts = list.map(transaction => transaction.amount)
     const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
 

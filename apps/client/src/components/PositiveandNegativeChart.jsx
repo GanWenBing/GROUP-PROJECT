@@ -96,26 +96,7 @@ const PositiveandNegativeChart = () => {
       <Bar dataKey="income" fill="#00C49F" />
     </BarChart>
 
-    // <BarChart
-    //   width={800}
-    //   height={400}
-    //   data={chart}
-    //   margin={{
-    //     top: 30,
-    //     right: 30,
-    //     left: 20,
-    //     bottom: 30
-    //   }}
-    // >
-    //   <CartesianGrid strokeDasharray="3 3" />
-    //   <XAxis dataKey="month_year" />
-    //   <YAxis />
-    //   <Tooltip />
-    //   <Legend />
-    //   <ReferenceLine y={0} stroke="#000" />
-    //   <Bar dataKey="expense" fill="#0088FE" />
-    //   <Bar dataKey="income" fill="#00C49F" />
-    // </BarChart>
+   
   )
 }
 
