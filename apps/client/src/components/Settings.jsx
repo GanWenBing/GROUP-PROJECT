@@ -32,7 +32,8 @@ const Settings = () => {
         console.log(id)
         const { Username, Password, ConfirmPassword, Email } = profile;
         console.log(Password);
-        if (Password != ConfirmPassword) {
+        console.log(ConfirmPassword)
+        if (Password !== ConfirmPassword) {
             console.log("Hi")
             return setError("Password did not match")    
         } else {
