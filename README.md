@@ -22,7 +22,7 @@
 With TrackIt! users are able to easily track and analyse their income and expenditure across the months. 
 
 <p align="center">
-  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/homepage.png?raw=true">
+  <img width="450" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/homepage.png?raw=true">
 </p>
 
 
@@ -35,16 +35,20 @@ With TrackIt! users are able to easily track and analyse their income and expend
 * App should be able to verify the user
 * Users should be able to navigate via navbar and log out
 * Users should be able to input income and expense and have the app auto-refresh
+<p align="center">
+  <img width="450" height="200" src="">
+</p>
+* Users should be able to edit and delete their inputs 
+<p align="center">
+  <img width="450" height="200" src="">
+</p>
 * Users should be able to analyse their income and expense via charts and graphs
+<p align="center">
+  <img width="450" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/overview.png?raw=true">
+</p>
 <br> 
 
-<p align="center">
-  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/overview.png?raw=true">
-</p>
 
-<p align="center">
-  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/overview.png?raw=true">
-</p>
 
 ### Approach:
 
