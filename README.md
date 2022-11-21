@@ -21,6 +21,11 @@
 ## 🕹 App overview 
 With TrackIt! users are able to easily track and analyse their income and expenditure across the months. 
 
+<p align="center">
+  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+</p>
+
+
 <br>
 
 ## 🛠 Development 
@@ -32,6 +37,15 @@ With TrackIt! users are able to easily track and analyse their income and expend
 * Users should be able to input income and expense and have the app auto-refresh
 * Users should be able to analyse their income and expense via charts and graphs
 <br> 
+
+<p align="center">
+  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+</p>
+
+
+<p align="center">
+  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+</p>
 
 ### Approach:
 
