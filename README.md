@@ -22,7 +22,7 @@
 With TrackIt! users are able to easily track and analyse their income and expenditure across the months. 
 
 <p align="center">
-  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/homepage.png?raw=true">
 </p>
 
 
@@ -39,12 +39,11 @@ With TrackIt! users are able to easily track and analyse their income and expend
 <br> 
 
 <p align="center">
-  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/overview.png?raw=true">
 </p>
 
-
 <p align="center">
-  <img width="600" height="200" src="https://github.com/JT142/Dino-Jump/blob/main/images/cubicbezier.gif?raw=true">
+  <img width="600" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/overview.png?raw=true">
 </p>
 
 ### Approach:
