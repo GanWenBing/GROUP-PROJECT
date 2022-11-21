@@ -36,11 +36,11 @@ With TrackIt! users are able to easily track and analyse their income and expend
 * Users should be able to navigate via navbar and log out
 * Users should be able to input income and expense and have the app auto-refresh
 <p align="center">
-  <img width="450" height="200" src="">
+  <img width="450" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/Create.gif?raw=true">
 </p>
 * Users should be able to edit and delete their inputs 
 <p align="center">
-  <img width="450" height="200" src="">
+  <img width="450" height="200" src="https://github.com/jabs142/track-it/blob/main/apps/client/src/images/Edit%20and%20Delete.gif?raw=true">
 </p>
 * Users should be able to analyse their income and expense via charts and graphs
 <p align="center">
