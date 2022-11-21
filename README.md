@@ -1,4 +1,3 @@
-# GROUP-PROJECT
 # 💰 TrackIt!
 
 ## 💻 Technologies & Tools Used
@@ -12,7 +11,6 @@
 - Git & GitHub
 - Vite 
 - Cyclic 
-- Turbo
 
 <br>
 
