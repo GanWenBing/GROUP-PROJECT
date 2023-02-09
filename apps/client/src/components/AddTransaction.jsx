@@ -29,10 +29,7 @@ const AddTransaction = ({ onAddTransaction }) => {
             amount: +amount
         }
 
-        console.log(newTransaction)
-
-
-        fetch("/api/expense/create", {
+        fetch("/api/expenses/create", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +61,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                         <option value="Expense" className="border border-gray-400 py-1 px-2 w-full">Expense</option>
                         <option value="Income" className="border border-gray-400 py-1 px-2 w-full">Income</option>
                     </select>
-                    
+
                 </div>
                 <div className="form-control">
                     <label htmlFor="category">Category</label>
@@ -76,7 +73,7 @@ const AddTransaction = ({ onAddTransaction }) => {
                                 {category.category}
                             </option>
                         ))}
-                       
+
                     </select>
                 </div>
                 <div className="form-control">

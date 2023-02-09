@@ -9,16 +9,14 @@ const IncomeVsExpense = () => {
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`/api/expense/listexpense/${id}`)
+    fetch(`/api/expenses/listexpense/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         let res = Object.values(data.reduce((acc, curr) => {
           (acc[curr.title] = acc[curr.title] || { name: curr.title, amount: 0 }).amount += Math.abs(curr.amount);
           return acc;
         }, {}));
         setData(res);
-        console.log(res)
       });
   }, []);
 

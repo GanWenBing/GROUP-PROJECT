@@ -11,7 +11,7 @@ const Balance = ({
         if (shouldFetch) {
             const userinfo = JSON.parse(localStorage.getItem("userInfo"))
             const id = userinfo.id
-            fetch(`/api/expense/listexpense/${id}`)
+            fetch(`/api/expenses/listexpense/${id}`)
                 .then((response) => response.json())
                 .then((data) =>
                     setList(data));

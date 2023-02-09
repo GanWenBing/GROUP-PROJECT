@@ -5,18 +5,18 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const LoginForm = () => {
-    
+
     const [error, setError] = useState("");
-   
+
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        const data = Object.fromEntries(new FormData(event.target));
-        console.log(data);
 
-        fetch("api/login", {
+        const data = Object.fromEntries(new FormData(event.target));
+
+
+        fetch("api/users/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -24,9 +24,9 @@ const LoginForm = () => {
             body: JSON.stringify(data)
         })
             .then((response) => {
-                console.log(response)
+
                 if (response.ok) {
-                   console.log("ok")
+
                     navigate("/Homepage");
                     window.location.reload("/Homepage");
                 } else {
@@ -54,14 +54,14 @@ const LoginForm = () => {
                         </div>
                         <div className='flex flex-col py-2'>
                             <label>Password:</label>
-                            <input className='border p-2' name="Password" type="password"/>
+                            <input className='border p-2' name="Password" type="password" />
                         </div>
                         <div className='flex flex-col py-2'>
                             <label className='text-red-600'>{error}</label>
                         </div>
                         <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' >Sign In</button>
                         <div className='flex justify-between'>
-                            <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' onClick={()=> navigate("/CreateAccount")}>Create an account</button>
+                            <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white' onClick={() => navigate("/CreateAccount")}>Create an account</button>
                         </div>
                     </form>
                 </div>

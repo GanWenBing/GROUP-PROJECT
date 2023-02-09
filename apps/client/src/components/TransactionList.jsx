@@ -10,25 +10,24 @@ const TransactionList = ({
   const [editItem, setEditItem] = useState(null)
   const [categories, setCategories] = useState([])
 
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
-        const req = await fetch("/api/categories");
-        const data = await req.json();
-        console.log(data)
-        setCategories(data);
+      const req = await fetch("/api/categories");
+      const data = await req.json();
+
+      setCategories(data);
     };
     fetchCategories();
-}, []);
+  }, []);
 
   useEffect(() => {
     if (shouldFetch) {
       const userinfo = JSON.parse(localStorage.getItem("userInfo"))
-      const id = userinfo.id
-      fetch(`/api/expense/expense/${id}`)
+      const userId = userinfo.id
+      fetch(`/api/expenses/expense/${userId}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
           setTransactions(data);
           setShouldFetch(false);
         });
@@ -37,7 +36,7 @@ const TransactionList = ({
 
 
   const handleDelete = async (id) => {
-    await fetch(`/api/expense/listexpense/${id}`, {
+    await fetch(`/api/expenses/listexpense/${id}`, {
       method: "DELETE",
       headers: {
         'Content-Type': "application/json"
@@ -52,17 +51,16 @@ const TransactionList = ({
         return response.json()
       })
       .then((data) => {
-        console.log(data)
       });
 
   }
 
   const handleSave = (e) => {
     e.preventDefault();
-    
+
     const id = editItem._id;
-    const {title, category, amount, description, date} = editItem
-    fetch(`/api/expense/update/${id}`, {
+    const { title, category, amount, description, date } = editItem
+    fetch(`/api/expenses/update/${id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json'
@@ -86,19 +84,19 @@ const TransactionList = ({
       .then((data) => {
         setEditItem(data)
       });
-   
+
   }
 
   const setdata = (e) => {
-    console.log(e.target)
+
     const { name, value } = e.target
     setEditItem((preval) => {
-        return {
-            ...preval,
-            [name]: value
-        }
+      return {
+        ...preval,
+        [name]: value
+      }
     })
-}
+  }
 
   return (
     <>
@@ -134,7 +132,7 @@ const TransactionList = ({
               return (
                 <tr className="bg-white border-b dark:bg-white-800 dark:border-gray-100" key={item._id}>
                   <td className="py-4 px-6">{item.title}</td>
-                  <td className="py-4 px-6">{item.category?.category}</td>
+                  <td className="py-4 px-6">{item.category ?.category}</td>
                   <td className="py-4 px-6">{item.description}</td>
                   <td className="py-4 px-6">{item.date}</td>
                   <td className="py-4 px-6">{item.amount}</td>
@@ -155,8 +153,8 @@ const TransactionList = ({
                               <form className="space-y-6" action="#">
                                 <div>
                                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-                                  <select name="title" placeholder={editItem.title} value={editItem.title} onChange={setdata}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" id="title" >
-                                  <option value="">--Please choose an option--</option>
+                                  <select name="title" placeholder={editItem.title} value={editItem.title} onChange={setdata} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" id="title" >
+                                    <option value="">--Please choose an option--</option>
                                     <option value="Expense">Expense</option>
                                     <option value="Income">Income</option>
                                   </select>
@@ -164,8 +162,8 @@ const TransactionList = ({
 
                                 <div>
                                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Category</label>
-                                  <select name="category" placeholder={editItem.category} value={editItem.category?.category} onChange={setdata}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
-                                  <option value="">--Please choose an option--</option>
+                                  <select name="category" placeholder={editItem.category} value={editItem.category ?.category} onChange={setdata} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
+                                    <option value="">--Please choose an option--</option>
                                     {categories.map((category) => (
                                       <option key={category._id} value={category._id}>
                                         {category.category}

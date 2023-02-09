@@ -33,7 +33,7 @@ const PositiveandNegativeChart = () => {
       let incomeAmount = 0;
       for (let i = 0; i < result.length; i++) {
         if (result[i].month_year === monthYear) {
-          console.log(obj)
+
           if (obj.title === 'Expense') {
             result[i].expense += -(obj.amount)
           } else if (obj.title === 'Income') {
@@ -63,12 +63,12 @@ const PositiveandNegativeChart = () => {
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`/api/expense/listexpense/${id}`)
+    fetch(`/api/expenses/listexpense/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+
         const dateDate = groupByDate(data)
-        console.log(dateDate);
+
         setChart(dateDate)
 
       });
@@ -96,7 +96,7 @@ const PositiveandNegativeChart = () => {
       <Bar dataKey="income" fill="#00C49F" />
     </BarChart>
 
-   
+
   )
 }
 

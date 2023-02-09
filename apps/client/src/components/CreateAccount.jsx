@@ -20,9 +20,8 @@ const CreateAccount = () => {
 
 
         const data = Object.fromEntries(new FormData(event.target));
-        console.log(data);
 
-        fetch("api/CreateAccount", {
+        fetch("api/users/CreateAccount", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -30,16 +29,14 @@ const CreateAccount = () => {
             body: JSON.stringify(data)
         })
             .then((response) => {
-                console.log(response)
                 if (response.ok) {
                     setShowAlert(true)
                 } else {
-                    console.log("Invalid, pls try again")
+                    alert("Invalid, pls try again")
                 }
                 return response.json()
             })
             .then((data) => {
-                console.log(data)
                 setError(data.error)
             });
 

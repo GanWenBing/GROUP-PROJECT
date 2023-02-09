@@ -1,15 +1,12 @@
 const express = require("express");
-
 const router = express.Router();
 const User = require("../models/User")
-//const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const generateToken = require("../generateToken")
 
-router.get("/users/seed", async (req, res) => {
+router.get("/seed", async (req, res) => {
   await User.deleteMany({});
-
   const users = await User.insertMany([
     {
       Username: "admin",
@@ -20,7 +17,6 @@ router.get("/users/seed", async (req, res) => {
   ]);
   res.json(users);
 });
-
 
 router.post("/CreateAccount", async (req, res) => {
   const { Username, Password, ConfirmPassword, Email } = req.body;
@@ -66,17 +62,12 @@ router.post("/CreateAccount", async (req, res) => {
 })
 
 router.post("/login", async (req, res) => {
-  console.log(req.body)
-  // const token = jwt.sign({ _id: user._id.toString() }, SECRET, { expiresIn: '1 day' })
-  // console.log(token)
   const { Username, Password } = req.body;
-  // User.findById()
   const user = await User.findOne({ Username });
   if (user === null) {
     res.status(401).json({ msg: "no user" })
     return;
   }
-  //const hash = user.password
   const loginPass = bcrypt.compareSync(Password, user.Password);
   if (loginPass) {
     res.status(200).json({ msg: "Login route", id: user._id, token: generateToken(user.id) });
@@ -86,7 +77,7 @@ router.post("/login", async (req, res) => {
 });
 
 
-router.get("/listusers", async (req, res) => { // Start of get
+router.get("/listusers", async (req, res) => {
   User.find({}, (err, foundUsers) => {
     if (err) {
       res.status(400).json({ error: err.message });
@@ -106,7 +97,7 @@ router.get("/user/:id", async (req, res) => {
   }
 })
 
-router.put("/userupdate/:id", async (req,res) => {
+router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
   const Username = req.body.Username;
   const Password = await bcrypt.hash(req.body.Password, saltRounds);
@@ -115,39 +106,36 @@ router.put("/userupdate/:id", async (req,res) => {
   var validated = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
-  try{
+  try {
     const existedUser = await User.findOne({ Username });
-    const existedEmail = await User.findOne({Email});
-  // if(req.body.Password!= req.body.ConfirmPassword){
-  //   return res.status(401).json({ error: "Password did not match" })
-  // }
-  // else if
-  if(!validated.test(Email)){
-    return res.status(401).json({ error: "invalid email address" });
-  }
-  if(existedEmail){
-    if(!(existedEmail.id == id)){
-      return res.status(401).json({ error: "Email is registered" })
-  }
-  }
-  if (existedUser) {
-    if(!(existedUser.id==id)){
-      return res.status(401).json({ error: "User Exist" })
-    }  
-  }
+    const existedEmail = await User.findOne({ Email });
 
-  User.findByIdAndUpdate(id, { $set: { Username: Username, Password: Password, ConfirmPassword: ConfirmPassword, Email: Email } }, (err, updated) => {
-    if (err) {
-      res.status(401).json({ error: err.message });
+    if (!validated.test(Email)) {
+      return res.status(401).json({ error: "invalid email address" });
     }
-    else {
-      res.status(200).json(updated);
+    if (existedEmail) {
+      if (!(existedEmail.id == id)) {
+        return res.status(401).json({ error: "Email is registered" })
+      }
     }
-  })
-}
-catch(error){
-  return res.status(401).json("error")
-}
+    if (existedUser) {
+      if (!(existedUser.id == id)) {
+        return res.status(401).json({ error: "User Exist" })
+      }
+    }
+
+    User.findByIdAndUpdate(id, { $set: { Username: Username, Password: Password, ConfirmPassword: ConfirmPassword, Email: Email } }, (err, updated) => {
+      if (err) {
+        res.status(401).json({ error: err.message });
+      }
+      else {
+        res.status(200).json(updated);
+      }
+    })
+  }
+  catch (error) {
+    return res.status(401).json("error")
+  }
 })
 
 

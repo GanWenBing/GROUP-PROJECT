@@ -8,13 +8,14 @@ const NavBar = () => {
   useEffect(() => {
     const userinfo = JSON.parse(localStorage.getItem("userInfo"))
     const id = userinfo.id
-    fetch(`/api/user/${id}`)
+    fetch(`/api/users/user/${id}`)
       .then((response) => response.json())
-      .then((data) =>
-        setUser(data.Username))
-      }
-  , []);
-  
+      .then((data) => {
+
+        setUser(data.Username)
+      })
+  }, []);
+
   const navigate = useNavigate()
 
   const handleClickLogout = () => {
@@ -66,7 +67,7 @@ const NavBar = () => {
                   >
                     Settings
                   </a>
-                  
+
                   <a
                     className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium absolute right-80"
                   >
