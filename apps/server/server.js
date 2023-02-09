@@ -13,7 +13,8 @@ const path = require('path')
 
 const PORT = process.env.PORT || 3000
 //const saltRounds = 10;
-const MONGO_URI = process.env.MONGO_URI;
+// const MONGO_URI = `${process.env.MONGO_URI}`
+const MONGO_URI = "mongodb://localhost:27017/ExpenseTracker"
 mongoose.connect(MONGO_URI);
 
 
